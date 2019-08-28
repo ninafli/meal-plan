@@ -1,0 +1,40 @@
+.tab-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 800px;
+}
+
+.tab-item {}
+
+.ingredient-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.input-amount {
+    max-width: 20px;
+}
+
+.input-unit {
+    max-width: 50px;
+}
+
+.input-method {
+    max-width: 100px;
+}
+
+.input-name {
+    max-width: 150px;
+}
+
+.mat-form-field {
+    margin-right: 12px;
+}
+
+.material-icons {
+    vertical-align: middle;
+}

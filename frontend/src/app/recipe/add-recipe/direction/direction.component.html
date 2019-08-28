@@ -1,0 +1,10 @@
+<div class="direction-container">
+  <div class="direction-number">
+    {{direction.id}}
+  </div>
+  <mat-form-field [floatLabel]="'never'" class="direction-details">
+    <mat-label> </mat-label>
+    <textarea matInput placeholder="Direction" [(ngModel)]="direction.details" (keydown.tab)="addDirection()"
+      #details autofocus></textarea>
+  </mat-form-field>
+</div>

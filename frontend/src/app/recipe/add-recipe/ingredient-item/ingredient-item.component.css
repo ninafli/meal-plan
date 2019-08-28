@@ -1,0 +1,32 @@
+.ingredient-container {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ingredient-item {
+    flex-grow: 1;
+}
+
+.input-amount {
+    max-width: 50px;
+}
+
+.input-unit {
+    max-width: 150px;
+}
+
+.input-method {
+    max-width: 200px;
+}
+
+.input-name {
+    max-width: 300px;
+}
+
+.add-ingredient {
+    align-self: flex-end;
+    align-items: center;
+}

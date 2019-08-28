@@ -1,0 +1,12 @@
+.direction-container {
+    display: flex;
+    align-items: baseline;
+}
+
+.direction-number {
+    width: 30px;
+}
+
+.direction-details {
+    flex-grow: 1;
+}

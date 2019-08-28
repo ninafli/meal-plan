@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Add A Recipe</h2>
+<mat-tab-group>
+  <mat-tab label="Ingredients">
+    <div class="tab-container">
+      <app-ingredient-item *ngFor="let ingredient of ingredients | keyvalue" [ingredient]="ingredient.value"
+        (ingredientToEmit)="addIngredient($event)"></app-ingredient-item>
+      <app-ingredient-item (ingredientToEmit)="addIngredient($event)" #newIngredient>
+      </app-ingredient-item>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Directions">
+    <app-direction *ngFor="let direction of directions | keyvalue" [direction]="direction.value"
+      (directionToEmit)="addDirection($event)"></app-direction>
+    <app-direction (directionToEmit)="addDirection($event)" #newDirection></app-direction>
+  </mat-tab>
+</mat-tab-group>

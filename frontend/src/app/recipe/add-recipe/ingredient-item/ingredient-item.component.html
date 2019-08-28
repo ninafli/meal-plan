@@ -1,0 +1,36 @@
+<div class="ingredient-container">
+  <div class="ingredient-item first">
+    <mat-form-field [floatLabel]="'never'" class="input-amount">
+      <input matInput placeholder="1" [(ngModel)]="ingredient.amount" type="number" #amount>
+    </mat-form-field>
+  </div>
+
+  <div class="ingredient-item">
+    <mat-form-field [floatLabel]="'never'" class="input-unit">
+      <input matInput placeholder="cup" [(ngModel)]="ingredient.unit">
+    </mat-form-field>
+  </div>
+
+  <div class="ingredient-item">
+    <mat-form-field [floatLabel]="'never'" class="input-method">
+      <input matInput placeholder="chopped" [(ngModel)]="ingredient.prepMethod">
+    </mat-form-field>
+  </div>
+
+  <div class="ingredient-item">
+    <mat-form-field [floatLabel]="'never'" class="input-name">
+      <input matInput placeholder="onions" [(ngModel)]="ingredient.rawIngredient" (keydown.tab)="addIngredient()">
+    </mat-form-field>
+  </div>
+
+  <button mat-icon-button class="ingredient-item delete-button" [disabled]="isInFlight()">
+    <mat-icon>delete</mat-icon>
+  </button>
+
+  <div *ngIf="isNew" class="tab-item add-ingredient">
+    <button mat-stroked-button (click)="addIngredient()" [disabled]="!isInFlight()">
+      <i class="material-icons">add</i> Add an ingredient
+    </button>
+  </div>
+
+</div>
