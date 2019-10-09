@@ -7,6 +7,8 @@ import { MaterialModule } from './common/material.module';
 import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
 import { DirectionComponent } from './recipe/add-recipe/direction/direction.component';
 import { FormsModule } from '@angular/forms';
+import { RecipeService } from './recipe/recipe.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,9 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule,
     MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [RecipeService],
   bootstrap: [AppComponent],
   entryComponents: [AddRecipeComponent]
 })

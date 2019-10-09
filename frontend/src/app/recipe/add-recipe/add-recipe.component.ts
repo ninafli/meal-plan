@@ -1,8 +1,10 @@
+import { Direction } from './../direction';
+import { RecipeService } from './../recipe.service';
 import { Ingredient } from '../ingredient';
 import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
-import { Direction } from '../direction';
 import { IngredientItemComponent } from './ingredient-item/ingredient-item.component';
 import { DirectionComponent } from './direction/direction.component';
+import { Recipe } from '../recipe';
 
 @Component({
   templateUrl: './add-recipe.component.html',
@@ -15,8 +17,9 @@ export class AddRecipeComponent implements OnInit {
   @ViewChild('newIngredient', { static: false }) newIngredient: IngredientItemComponent;
   @ViewChild('newDirection', { static: false }) newDirection: DirectionComponent;
 
-  ngOnInit() {
-  }
+  constructor(private recipeService: RecipeService) { }
+
+  ngOnInit() { }
 
   addIngredient(ingredient: Ingredient) {
     if (!ingredient.id) {
@@ -24,7 +27,6 @@ export class AddRecipeComponent implements OnInit {
     }
 
     this.ingredients.set(ingredient.id, ingredient);
-    console.log(this.ingredients);
     this.newIngredient.focusInput();
   }
 
@@ -35,5 +37,11 @@ export class AddRecipeComponent implements OnInit {
 
     this.directions.set(direction.id, direction);
     this.newDirection.focusInput();
+  }
+
+  saveRecipe() {
+    if (this.directions.size > 0 && this.ingredients.size > 0) {
+      this.recipeService.save(new Recipe(Array.from(this.ingredients.values()), Array.from(this.directions.values())));
+    }
   }
 }

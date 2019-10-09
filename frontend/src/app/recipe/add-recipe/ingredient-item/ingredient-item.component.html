@@ -27,10 +27,9 @@
     <mat-icon>delete</mat-icon>
   </button>
 
-  <div *ngIf="isNew" class="tab-item add-ingredient">
-    <button mat-stroked-button (click)="addIngredient()" [disabled]="!isInFlight()">
-      <i class="material-icons">add</i> Add an ingredient
-    </button>
-  </div>
-
+</div>
+<div *ngIf="isNew" class="ingredient-add">
+  <button mat-stroked-button (click)="addIngredient()" [disabled]="!isInFlight()">
+    <i class="material-icons">add</i> Add an ingredient
+  </button>
 </div>
