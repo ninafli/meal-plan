@@ -6,7 +6,8 @@ import lombok.Data;
 
 @Data
 public class Recipe {
+	private String id;
 	private List<Ingredient> ingredients;
-	private List<String> directions;
+	private List<String> method;
 
 }

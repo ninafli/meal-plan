@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './common/material.module';
 import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
-import { DirectionComponent } from './recipe/add-recipe/direction/direction.component';
+import { MethodComponent } from './recipe/add-recipe/method/method.component';
 import { FormsModule } from '@angular/forms';
 import { RecipeService } from './recipe/recipe.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     AddRecipeComponent,
-    DirectionComponent,
+    MethodComponent,
     IngredientItemComponent
   ],
   imports: [

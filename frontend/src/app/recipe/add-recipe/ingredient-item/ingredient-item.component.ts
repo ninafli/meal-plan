@@ -10,8 +10,7 @@ import { Ingredient } from '../../ingredient';
 export class IngredientItemComponent implements OnInit {
 
   @Input() ingredient?: Ingredient;
-  @Output() ingredientToEmit = new EventEmitter<Ingredient>();
-
+  @Output() ingredientChanged = new EventEmitter<Ingredient>();
   @ViewChild('amount', { static: false }) amount: ElementRef;
 
   isNew = false;
@@ -25,14 +24,10 @@ export class IngredientItemComponent implements OnInit {
     }
   }
 
-  isInFlight(): boolean {
-    return !this.ingredient.id;
-  }
-
   addIngredient() {
     if (this.ingredient.amount > 0 && this.ingredient.rawIngredient && this.ingredient.rawIngredient !== '') {
-      this.ingredientToEmit.emit(this.ingredient);
       if (this.isNew) {
+        this.ingredientChanged.emit(this.ingredient);
         this.ingredient = new Ingredient();
       }
     }

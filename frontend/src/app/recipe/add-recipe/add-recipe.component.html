@@ -3,16 +3,15 @@
 <mat-tab-group>
   <mat-tab label="Ingredients">
     <div class="tab-container">
-      <app-ingredient-item *ngFor="let ingredient of ingredients | keyvalue" [ingredient]="ingredient.value"
-        (ingredientToEmit)="addIngredient($event)"></app-ingredient-item>
-      <app-ingredient-item (ingredientToEmit)="addIngredient($event)" #newIngredient>
+      <app-ingredient-item ngModel *ngFor="let ingredient of ingredients" ngDefaultControl [(ingredient)]="ingredient">
+      </app-ingredient-item>
+      <app-ingredient-item (ingredientChanged)="addIngredient($event)" #newIngredient>
       </app-ingredient-item>
     </div>
   </mat-tab>
 
   <mat-tab label="Directions">
-    <app-direction *ngFor="let direction of directions | keyvalue" [direction]="direction.value"
-      (directionToEmit)="addDirection($event)"></app-direction>
-    <app-direction (directionToEmit)="addDirection($event)" #newDirection></app-direction>
+    <app-method *ngFor="let method of methods" ngDefaultControl [(method)]="method"></app-method>
+    <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
   </mat-tab>
 </mat-tab-group>
