@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nina.mealplan.dm.Recipe;
+import com.nina.mealplan.exception.DatabaseException;
 import com.nina.mealplan.service.RecipeService;
 
 import lombok.Getter;
@@ -25,12 +26,13 @@ public class RecipeController {
 	private RecipeService recipeService;
 
 	@GetMapping
-	public List<Recipe> getAll() {
-		return null;
+	public List<Recipe> getAll() throws DatabaseException {
+		return getRecipeService().findAll();
 	}
 
 	@PostMapping
-	public Recipe save(@RequestBody Recipe recipe) {
+	public Recipe save(@RequestBody Recipe recipe) throws DatabaseException {
 		return getRecipeService().save(recipe);
 	}
+
 }
