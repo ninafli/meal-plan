@@ -1,5 +1,6 @@
 package com.nina.mealplan.service;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
-import com.nina.mealplan.config.FirebaseConfig;
 import com.nina.mealplan.dm.Recipe;
 
 import lombok.Getter;
@@ -24,7 +24,7 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	public Recipe save(Recipe recipe) {
 
-		ApiFuture<DocumentReference> future = fireStore.collection(FirebaseConfig.RAW_INGREDIENT_COLLECTIONS)
+		ApiFuture<DocumentReference> future = fireStore.collection(Recipe.class.getSimpleName())
 				.add(recipe);
 
 		Recipe added = null;
@@ -39,5 +39,11 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 
 		return added;
+	}
+
+	@Override
+	public List<Recipe> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

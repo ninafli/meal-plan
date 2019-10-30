@@ -1,5 +1,7 @@
 package com.nina.mealplan.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +25,8 @@ public class RecipeController {
 	private RecipeService recipeService;
 
 	@GetMapping
-	public String getAll() {
-		return "nina";
+	public List<Recipe> getAll() {
+		return null;
 	}
 
 	@PostMapping
