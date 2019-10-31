@@ -1,4 +1,6 @@
 # To Do
-* null id in firebase
-* load recipe
-* get nav bar
+* add recipe 
+    * stepper
+    * upload photo
+    * categories
+* front end recipe card 

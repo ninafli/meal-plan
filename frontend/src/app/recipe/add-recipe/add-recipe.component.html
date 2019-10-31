@@ -1,17 +1,57 @@
-<h2 mat-dialog-title>Add A Recipe</h2>
-<button mat-stroked-button color="primary" (click)="saveRecipe()" #saveButton>Save</button>
-<mat-tab-group>
-  <mat-tab label="Ingredients">
-    <div class="tab-container">
-      <app-ingredient-item ngModel *ngFor="let ingredient of ingredients" ngDefaultControl [(ingredient)]="ingredient">
-      </app-ingredient-item>
-      <app-ingredient-item (ingredientChanged)="addIngredient($event)" #newIngredient>
-      </app-ingredient-item>
+<div>
+  <mat-form-field class="recipe-name">
+    <input matInput placeholder="Recipe Name">
+  </mat-form-field>
+</div>
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>Enter ingredients</ng-template>
+      <div class="tab-container">
+        <app-ingredient-item ngModel *ngFor="let ingredient of ingredients" ngDefaultControl
+          [(ingredient)]="ingredient">
+        </app-ingredient-item>
+        <app-ingredient-item (ingredientChanged)="addIngredient($event)" #newIngredient>
+        </app-ingredient-item>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>Enter directions</ng-template>
+      <div class="tab-container">
+        <app-method *ngFor="let method of methods" ngDefaultControl [(method)]="method"></app-method>
+        <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
+      </div>
+    </form>
+  </mat-step>
+  <!-- <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
-  </mat-tab>
+  </mat-step> -->
+</mat-horizontal-stepper>
 
-  <mat-tab label="Directions">
-    <app-method *ngFor="let method of methods" ngDefaultControl [(method)]="method"></app-method>
-    <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
-  </mat-tab>
-</mat-tab-group>
+<!-- <mat-tab-group><mat-tab>
+  <ng-template mat-tab-label>
+    INGREDIENTS
+  </ng-template>
+  <div class="tab-container">
+    <app-ingredient-item ngModel *ngFor="let ingredient of ingredients" ngDefaultControl [(ingredient)]="ingredient">
+    </app-ingredient-item>
+    <app-ingredient-item (ingredientChanged)="addIngredient($event)" #newIngredient>
+    </app-ingredient-item>
+  </div>
+</mat-tab>
+
+<mat-tab>
+  <ng-template mat-tab-label>
+    DIRECTIONS
+  </ng-template>
+  <app-method *ngFor="let method of methods" ngDefaultControl [(method)]="method"></app-method>
+  <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
+</mat-tab>
+</mat-tab-group> -->

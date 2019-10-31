@@ -1,5 +1,10 @@
-<div>
-  <button mat-fab color="accent" (click)="openDialog()">
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
+<mat-toolbar color="primary">
+  <a mat-button class="companyName" routerLink="/">
+    <span>{{title}}</span>
+  </a>
+  <span class="example-spacer"></span>
+  <a mat-button routerLink="/recipes">Recipes</a>
+  <a mat-button routerLink="/contact">Contact</a>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

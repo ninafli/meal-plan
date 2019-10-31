@@ -4,6 +4,7 @@ import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
 import { IngredientItemComponent } from './ingredient-item/ingredient-item.component';
 import { MethodComponent } from './method/method.component';
 import { Recipe } from '../recipe';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './add-recipe.component.html',
@@ -18,7 +19,8 @@ export class AddRecipeComponent implements OnInit {
 
   constructor(private recipeService: RecipeService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);

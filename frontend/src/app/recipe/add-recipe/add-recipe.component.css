@@ -38,3 +38,8 @@
 .material-icons {
     vertical-align: middle;
 }
+
+.recipe-name {
+    font-size: 20px;
+    width: 100%;
+}

@@ -6,22 +6,27 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './common/material.module';
 import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
 import { MethodComponent } from './recipe/add-recipe/method/method.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './recipe/recipe.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { RecipeMainComponent } from './recipe/recipe-main/recipe-main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddRecipeComponent,
     MethodComponent,
-    IngredientItemComponent
+    IngredientItemComponent,
+    RecipeMainComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent],

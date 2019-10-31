@@ -15,16 +15,20 @@ import {
   MatTableModule,
   MatGridListModule,
   MatTabsModule,
+  MatDivider,
+  MatDividerModule,
+  MatStepperModule,
 } from '@angular/material';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule ,
+    BrowserAnimationsModule,
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
+    MatToolbarModule,
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
@@ -32,7 +36,8 @@ import {
     MatTableModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatTabsModule
+    MatStepperModule,
+    MatDividerModule,
   ],
   exports: [
     MatButtonModule,
@@ -40,14 +45,16 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
+    MatToolbarModule,
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
     MatInputModule,
-    MatTableModule,
+    MatStepperModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDividerModule
   ]
 })
 export class MaterialModule { }
