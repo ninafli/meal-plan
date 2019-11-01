@@ -25,6 +25,14 @@ export class AddRecipeComponent implements OnInit {
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
     this.newIngredient.focusInput();
+    console.log(this.ingredients);
+  }
+
+  deleteIngredient(ingredient: Ingredient) {
+    const index = this.ingredients.indexOf(ingredient);
+    if (index > -1) {
+      this.ingredients.splice(index, 1);
+    }
   }
 
   addDirection(method: string) {

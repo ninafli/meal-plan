@@ -1,6 +1,6 @@
 <div>
   <mat-form-field class="recipe-name">
-    <input matInput placeholder="Recipe Name">
+    <input matInput placeholder="Recipe Name" />
   </mat-form-field>
 </div>
 <mat-horizontal-stepper [linear]="true" #stepper>
@@ -8,10 +8,17 @@
     <form>
       <ng-template matStepLabel>Enter ingredients</ng-template>
       <div class="tab-container">
-        <app-ingredient-item ngModel *ngFor="let ingredient of ingredients" ngDefaultControl
-          [(ingredient)]="ingredient">
+        <app-ingredient-item
+          *ngFor="let ingredient of ingredients"
+          ngDefaultControl
+          [(ingredient)]="ingredient"
+          (ingredientDeleted)="deleteIngredient($event)"
+        >
         </app-ingredient-item>
-        <app-ingredient-item (ingredientChanged)="addIngredient($event)" #newIngredient>
+        <app-ingredient-item
+          (ingredientAdded)="addIngredient($event)"
+          #newIngredient
+        >
         </app-ingredient-item>
       </div>
     </form>
@@ -20,8 +27,15 @@
     <form>
       <ng-template matStepLabel>Enter directions</ng-template>
       <div class="tab-container">
-        <app-method *ngFor="let method of methods" ngDefaultControl [(method)]="method"></app-method>
-        <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
+        <app-method
+          *ngFor="let method of methods"
+          ngDefaultControl
+          [(method)]="method"
+        ></app-method>
+        <app-method
+          (methodToEmit)="addDirection($event)"
+          #newDirection
+        ></app-method>
       </div>
     </form>
   </mat-step>

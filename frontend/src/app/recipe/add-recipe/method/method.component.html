@@ -1,7 +1,14 @@
 <div class="direction-container">
   <mat-form-field [floatLabel]="'never'" class="direction-details">
     <mat-label> </mat-label>
-    <textarea matInput placeholder="Method" [(ngModel)]="method" (keydown.tab)="addMethod()"
-      #details autofocus></textarea>
+    <textarea
+      matInput
+      placeholder="Method"
+      [(ngModel)]="method"
+      name="method"
+      (keydown.tab)="addMethod()"
+      #details
+      autofocus
+    ></textarea>
   </mat-form-field>
 </div>
