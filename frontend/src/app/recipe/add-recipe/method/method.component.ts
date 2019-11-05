@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 
 @Component({
   selector: 'app-method',
@@ -7,10 +8,12 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef }
 })
 export class MethodComponent implements OnInit {
 
+  @Input() index?: number;
   @Input() method?: string;
   @Output() methodToEmit = new EventEmitter<string>();
 
   @ViewChild('details', { static: false }) details: ElementRef;
+  @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
 
   isNew = false;
 
@@ -21,6 +24,7 @@ export class MethodComponent implements OnInit {
       this.method = '';
       this.isNew = true;
     }
+    console.log(this.index);
   }
 
   addMethod() {

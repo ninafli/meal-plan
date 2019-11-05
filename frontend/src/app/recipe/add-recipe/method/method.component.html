@@ -1,14 +1,19 @@
 <div class="direction-container">
-  <mat-form-field [floatLabel]="'never'" class="direction-details">
-    <mat-label> </mat-label>
-    <textarea
-      matInput
-      placeholder="Method"
-      [(ngModel)]="method"
-      name="method"
-      (keydown.tab)="addMethod()"
-      #details
-      autofocus
-    ></textarea>
-  </mat-form-field>
+  <label *ngIf="index !== undefined" class="direction-number"
+    >{{ index + 1 }}.</label
+  >
+  <textarea
+    class="direction-details"
+    matInput
+    placeholder="direction"
+    [(ngModel)]="method"
+    name="method"
+    (keydown.tab)="addMethod()"
+    #details
+    autofocus
+    cdkTextareaAutosize
+    #autosize="cdkTextareaAutosize"
+    cdkAutosizeMinRows="1"
+    cdkAutosizeMaxRows="5"
+  ></textarea>
 </div>

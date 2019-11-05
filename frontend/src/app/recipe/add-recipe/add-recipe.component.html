@@ -28,9 +28,10 @@
       <ng-template matStepLabel>Enter directions</ng-template>
       <div class="tab-container">
         <app-method
-          *ngFor="let method of methods"
+          *ngFor="let method of methods; index as i"
           ngDefaultControl
           [(method)]="method"
+          [(index)]="i"
         ></app-method>
         <app-method
           (methodToEmit)="addDirection($event)"
