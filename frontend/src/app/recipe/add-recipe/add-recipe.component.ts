@@ -4,7 +4,8 @@ import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
 import { IngredientItemComponent } from './ingredient-item/ingredient-item.component';
 import { MethodComponent } from './method/method.component';
 import { Recipe } from '../recipe';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatChipInputEvent, MatAutocomplete } from '@angular/material';
 
 @Component({
   templateUrl: './add-recipe.component.html',
@@ -14,6 +15,9 @@ export class AddRecipeComponent implements OnInit {
 
   ingredients: Ingredient[] = [];
   methods: string[] = [];
+  recipeName = '';
+  tags: Set<string>;
+
   @ViewChild('newIngredient', { static: false }) newIngredient: IngredientItemComponent;
   @ViewChild('newDirection', { static: false }) newDirection: MethodComponent;
 
@@ -25,7 +29,6 @@ export class AddRecipeComponent implements OnInit {
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
     this.newIngredient.focusInput();
-    console.log(this.ingredients);
   }
 
   deleteIngredient(ingredient: Ingredient) {
@@ -37,13 +40,15 @@ export class AddRecipeComponent implements OnInit {
 
   addDirection(method: string) {
     this.methods.push(method);
-    console.log(this.methods);
     this.newDirection.focusInput();
   }
 
+  isValid(): boolean {
+    return this.methods.length > 0 && this.ingredients.length > 0 && this.recipeName !== '';
+  }
   saveRecipe() {
-    if (this.methods.length > 0 && this.ingredients.length > 0) {
-      this.recipeService.save(new Recipe(this.ingredients, this.methods));
+    if (this.isValid()) {
+      this.recipeService.save(new Recipe(this.ingredients, this.methods, this.tags, this.recipeName));
     }
   }
 }

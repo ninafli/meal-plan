@@ -1,7 +1,9 @@
 package com.nina.mealplan.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.common.collect.Maps;
 import com.nina.mealplan.dm.Recipe;
 import com.nina.mealplan.exception.DatabaseException;
 
@@ -20,26 +23,50 @@ import lombok.Getter;
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
+	private static String TAGS_COLLECTION = "Recipe-Tags";
 	@Autowired
 	@Getter
 	private Firestore fireStore;
+
+	@Override
+	public Set<String> getTags() throws DatabaseException {
+		Set<String> result = new HashSet<String>();
+		DocumentSnapshot documentSnapshot;
+		try {
+			documentSnapshot = getTagsCollection().get().get();
+			if (documentSnapshot.exists()) {
+				result = documentSnapshot.getData().keySet();
+			}
+		} catch (InterruptedException | ExecutionException e) {
+			throw new DatabaseException(e);
+		}
+
+		return result;
+	}
+
+	private DocumentReference getTagsCollection() throws DatabaseException {
+		return fireStore.collection(TAGS_COLLECTION).document(TAGS_COLLECTION);
+	}
 
 	@Override
 	public Recipe save(Recipe recipe) throws DatabaseException {
 
 		ApiFuture<DocumentReference> future = fireStore.collection(Recipe.class.getSimpleName()).add(recipe);
 
-		Recipe added = null;
+		Recipe addedRecipe = null;
 		try {
-			DocumentSnapshot documentSnapshot = future.get().get().get();
-			added = documentSnapshot.toObject(Recipe.class);
-			added.setId(documentSnapshot.getId());
-
+			DocumentSnapshot recipeDocSnapshot = future.get().get().get();
+			addedRecipe = recipeDocSnapshot.toObject(Recipe.class);
+			addedRecipe.setId(recipeDocSnapshot.getId());
+			if (recipe.getTags() != null && recipe.getTags().size() > 0) {
+				fireStore.collection(TAGS_COLLECTION).document(TAGS_COLLECTION)
+						.create(Maps.asMap(recipe.getTags(), tag -> null));
+			}
 		} catch (InterruptedException | ExecutionException e) {
 			throw new DatabaseException(e);
 		}
 
-		return added;
+		return addedRecipe;
 	}
 
 	@Override

@@ -24,7 +24,6 @@ export class MethodComponent implements OnInit {
       this.method = '';
       this.isNew = true;
     }
-    console.log(this.index);
   }
 
   addMethod() {

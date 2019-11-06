@@ -22,6 +22,7 @@ export class IngredientItemComponent implements OnInit {
     if (!this.ingredient) {
       this.ingredient = new Ingredient();
       this.isNew = true;
+      setTimeout(() => this.amount.nativeElement.focus());
     }
   }
 

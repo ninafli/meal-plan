@@ -11,6 +11,7 @@ import { RecipeService } from './recipe/recipe.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeMainComponent } from './recipe/recipe-main/recipe-main.component';
+import { RecipeTagComponent } from './recipe/recipe-tag/recipe-tag.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RecipeMainComponent } from './recipe/recipe-main/recipe-main.component'
     AddRecipeComponent,
     MethodComponent,
     IngredientItemComponent,
-    RecipeMainComponent
+    RecipeMainComponent,
+    RecipeTagComponent
   ],
   imports: [
     BrowserModule,

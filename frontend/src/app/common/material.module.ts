@@ -18,6 +18,8 @@ import {
   MatDivider,
   MatDividerModule,
   MatStepperModule,
+  MatChipsModule,
+  MatAutocompleteModule,
 } from '@angular/material';
 
 @NgModule({
@@ -38,6 +40,8 @@ import {
     MatFormFieldModule,
     MatStepperModule,
     MatDividerModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatButtonModule,
@@ -54,7 +58,9 @@ import {
     MatGridListModule,
     MatFormFieldModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule { }

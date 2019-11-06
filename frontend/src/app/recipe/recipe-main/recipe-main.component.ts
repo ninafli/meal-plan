@@ -15,8 +15,8 @@ export class RecipeMainComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddRecipeComponent, {
       width: '800px',
-      height: '800px',
-      autoFocus: true
+      autoFocus: true,
+      disableClose: true
     });
   }
 

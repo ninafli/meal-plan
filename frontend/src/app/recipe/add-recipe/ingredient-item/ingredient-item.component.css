@@ -27,6 +27,7 @@
 }
 
 .ingredient-add {
-    align-self: flex-end;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }

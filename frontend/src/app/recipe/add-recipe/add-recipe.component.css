@@ -2,10 +2,8 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    height: 800px;
+    height: 600px;
 }
-
-.tab-item {}
 
 .ingredient-container {
     display: flex;
@@ -39,7 +37,12 @@
     vertical-align: middle;
 }
 
+.actions-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .recipe-name {
     font-size: 20px;
-    width: 100%;
+    flex-grow: 2;
 }

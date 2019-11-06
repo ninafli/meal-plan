@@ -1,6 +1,7 @@
 package com.nina.mealplan.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +29,11 @@ public class RecipeController {
 	@GetMapping
 	public List<Recipe> getAll() throws DatabaseException {
 		return getRecipeService().findAll();
+	}
+
+	@GetMapping("/tag")
+	public Set<String> getTags() throws DatabaseException {
+		return recipeService.getTags();
 	}
 
 	@PostMapping

@@ -1,6 +1,9 @@
 # To Do
 * add recipe 
+    * two way binding of tags with recipe-tag and add-recipe 
+    * save tags
     * upload photo
-    * categories
 * frontend recipe card 
-* return key maps to delete: fix
+
+# FIXME 
+* on add recipe, add ingredient, return key maps to delete
