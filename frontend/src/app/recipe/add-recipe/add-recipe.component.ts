@@ -16,7 +16,7 @@ export class AddRecipeComponent implements OnInit {
   ingredients: Ingredient[] = [];
   methods: string[] = [];
   recipeName = '';
-  tags: Set<string>;
+  tags: Set<string> = new Set();
 
   @ViewChild('newIngredient', { static: false }) newIngredient: IngredientItemComponent;
   @ViewChild('newDirection', { static: false }) newDirection: MethodComponent;

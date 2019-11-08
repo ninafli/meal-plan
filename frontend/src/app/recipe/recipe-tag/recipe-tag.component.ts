@@ -47,9 +47,6 @@ export class RecipeTagComponent implements OnInit {
 
       // Add our tag
       if ((value || '').trim()) {
-        if (this.tags === undefined) {
-          this.tags = new Set();
-        }
         this.tags.add(value.trim());
       }
 

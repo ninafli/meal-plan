@@ -10,3 +10,7 @@
 .direction-details {
     flex-grow: 1;
 }
+
+textarea.mat-input-element {
+    padding: 10px 10px 0 0;
+}

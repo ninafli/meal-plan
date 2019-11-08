@@ -1,7 +1,6 @@
 package com.nina.mealplan.dm;
 
 import java.util.List;
-import java.util.Set;
 
 import com.google.cloud.firestore.annotation.Exclude;
 
@@ -14,7 +13,7 @@ public class Recipe {
 	private String name;
 	private List<Ingredient> ingredients;
 	private List<String> method;
-	private Set<String> tags;
+	private List<String> tags;
 
 	@Exclude
 	public String getId() {

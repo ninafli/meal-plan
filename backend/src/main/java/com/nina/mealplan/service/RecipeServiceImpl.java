@@ -60,7 +60,7 @@ public class RecipeServiceImpl implements RecipeService {
 			addedRecipe.setId(recipeDocSnapshot.getId());
 			if (recipe.getTags() != null && recipe.getTags().size() > 0) {
 				fireStore.collection(TAGS_COLLECTION).document(TAGS_COLLECTION)
-						.create(Maps.asMap(recipe.getTags(), tag -> null));
+						.create(Maps.asMap(new HashSet<String>(recipe.getTags()), tag -> null));
 			}
 		} catch (InterruptedException | ExecutionException e) {
 			throw new DatabaseException(e);
