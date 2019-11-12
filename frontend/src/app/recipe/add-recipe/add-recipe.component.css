@@ -1,48 +1,20 @@
-.tab-container {
-    display: flex;
+.step-container {
+  /* display: flex;
     justify-content: flex-start;
-    flex-direction: column;
-    height: 600px;
-}
-
-.ingredient-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: baseline;
-    flex-wrap: wrap;
-}
-
-.input-amount {
-    max-width: 20px;
-}
-
-.input-unit {
-    max-width: 50px;
-}
-
-.input-method {
-    max-width: 100px;
-}
-
-.input-name {
-    max-width: 150px;
-}
-
-.mat-form-field {
-    margin-right: 12px;
-}
-
-.material-icons {
-    vertical-align: middle;
+    flex-direction: column; */
+  height: 600px;
 }
 
 .actions-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-tags {
+  flex-grow: 2;
 }
 
 .recipe-name {
-    font-size: 20px;
-    flex-grow: 2;
+  font-size: 20px;
+  width: 100%;
 }

@@ -1,16 +1,33 @@
-<mat-form-field class="tags-list">
-    <mat-chip-list #tagList aria-label="Tags">
-        <mat-chip *ngFor="let tag of tags" [selectable]="true" [removable]="true" (removed)="remove(tag)">
-            {{tag}}
-            <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-        <input placeholder="Add tags" #tagInput [formControl]="tagCtrl" [matAutocomplete]="auto"
-            [matChipInputFor]="tagList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-        <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
-            {{tag}}
-        </mat-option>
-    </mat-autocomplete>
+<mat-form-field class="tags-list" appearance="outline">
+  <mat-chip-list #tagList aria-label="Tags">
+    <mat-chip
+      *ngFor="let tag of tags"
+      [selectable]="!readOnly"
+      [removable]="!readOnly"
+      (removed)="remove(tag)"
+    >
+      {{ tag }}
+      <mat-icon *ngIf="!readOnly" matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <!-- <input
+      *ngIf="!readOnly"
+      placeholder="Add tags"
+      #tagInput
+      [formControl]="tagCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="tagList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="true"
+      (matChipInputTokenEnd)="add($event)"
+    /> -->
+  </mat-chip-list>
+  <!-- <mat-autocomplete
+    *ngIf="!readOnly"
+    #auto="matAutocomplete"
+    (optionSelected)="selected($event)"
+  >
+    <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+      {{ tag }}
+    </mat-option>
+  </mat-autocomplete> -->
 </mat-form-field>

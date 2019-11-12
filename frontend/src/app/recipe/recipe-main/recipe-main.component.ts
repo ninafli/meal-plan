@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { RecipeService } from '../recipe.service';
+import { Recipe } from '../recipe';
 
 @Component({
   selector: 'app-recipe-main',
@@ -9,7 +11,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angu
 })
 export class RecipeMainComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {
+  recipes: Recipe[];
+
+  constructor(public dialog: MatDialog, private recipeService: RecipeService) {
   }
 
   openDialog(): void {
@@ -21,6 +25,6 @@ export class RecipeMainComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.recipeService.getAll().subscribe(data => this.recipes = data);
   }
-
 }

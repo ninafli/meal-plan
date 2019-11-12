@@ -19,6 +19,7 @@ export class RecipeTagComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   @Input() tags: Set<string>;
+  @Input() readOnly = true;
   @ViewChild('tagInput', { static: false }) tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 

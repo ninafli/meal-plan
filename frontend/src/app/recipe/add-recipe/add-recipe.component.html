@@ -1,14 +1,23 @@
 <mat-dialog-content>
-  <app-recipe-tag [(tags)]="tags"></app-recipe-tag>
+  <mat-form-field class="recipe-name">
+    <input matInput placeholder="Recipe Name" [(ngModel)]="recipeName" />
+  </mat-form-field>
   <mat-horizontal-stepper [linear]="true" #stepper>
     <mat-step>
       <form>
         <ng-template matStepLabel>Ingredients</ng-template>
-        <div class="tab-container">
-          <app-ingredient-item *ngFor="let ingredient of ingredients" ngDefaultControl [(ingredient)]="ingredient"
-            (ingredientDeleted)="deleteIngredient($event)">
+        <div class="step-container">
+          <app-ingredient-item
+            *ngFor="let ingredient of ingredients"
+            ngDefaultControl
+            [(ingredient)]="ingredient"
+            (ingredientDeleted)="deleteIngredient($event)"
+          >
           </app-ingredient-item>
-          <app-ingredient-item (ingredientAdded)="addIngredient($event)" #newIngredient>
+          <app-ingredient-item
+            (ingredientAdded)="addIngredient($event)"
+            #newIngredient
+          >
           </app-ingredient-item>
         </div>
       </form>
@@ -16,21 +25,29 @@
     <mat-step>
       <form>
         <ng-template matStepLabel>Directions</ng-template>
-        <div class="tab-container">
-          <app-method *ngFor="let method of methods; index as i" ngDefaultControl [(method)]="method" [(index)]="i">
+        <div class="step-container">
+          <app-method
+            *ngFor="let method of methods; index as i"
+            ngDefaultControl
+            [(method)]="method"
+            [(index)]="i"
+          >
           </app-method>
-          <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
+          <app-method
+            (methodToEmit)="addDirection($event)"
+            #newDirection
+          ></app-method>
         </div>
       </form>
     </mat-step>
   </mat-horizontal-stepper>
 </mat-dialog-content>
 <mat-dialog-actions class="actions-container">
-  <mat-form-field class="recipe-name">
-    <input matInput placeholder="Recipe Name" [(ngModel)]="recipeName" />
-  </mat-form-field>
+  <app-recipe-tag [(tags)]="tags" class="recipe-tags"></app-recipe-tag>
   <div>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [disabled]="!isValid()" (click)="saveRecipe()">Save</button>
+    <button mat-button [disabled]="!isValid()" (click)="saveRecipe()">
+      Save
+    </button>
   </div>
 </mat-dialog-actions>

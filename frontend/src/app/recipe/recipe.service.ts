@@ -9,10 +9,14 @@ import { Observable } from 'rxjs';
 export class RecipeService {
 
   private url: string;
+
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/recipe';
   }
 
+  getAll(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(this.url);
+  }
   save(recipe: Recipe) {
     this.http.post<Recipe>(this.url, recipe).subscribe(res => console.log(res));
   }
