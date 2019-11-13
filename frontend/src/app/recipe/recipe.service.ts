@@ -24,4 +24,8 @@ export class RecipeService {
   getTags(): Observable<string[]> {
     return this.http.get<string[]>(this.url + '/tag');
   }
+
+  getImage(url: string): Observable<Blob> {
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
+import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
-import { RecipeService } from '../recipe.service';
-import { Recipe } from '../recipe';
+import { RecipeService } from './recipe.service';
+import { Recipe } from './recipe';
 
 @Component({
   selector: 'app-recipe-main',
@@ -25,6 +25,6 @@ export class RecipeMainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recipeService.getAll().subscribe(data => this.recipes = data);
+    this.recipeService.getAll().subscribe(data => { this.recipes = data; console.log(this.recipes); });
   }
 }

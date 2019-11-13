@@ -14,6 +14,7 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.SetOptions;
 import com.google.common.collect.Maps;
 import com.nina.mealplan.dm.Recipe;
 import com.nina.mealplan.exception.DatabaseException;
@@ -60,7 +61,7 @@ public class RecipeServiceImpl implements RecipeService {
 			addedRecipe.setId(recipeDocSnapshot.getId());
 			if (recipe.getTags() != null && recipe.getTags().size() > 0) {
 				fireStore.collection(TAGS_COLLECTION).document(TAGS_COLLECTION)
-						.create(Maps.asMap(new HashSet<String>(recipe.getTags()), tag -> null));
+						.set(Maps.asMap(new HashSet<String>(recipe.getTags()), tag -> null), SetOptions.merge());
 			}
 		} catch (InterruptedException | ExecutionException e) {
 			throw new DatabaseException(e);

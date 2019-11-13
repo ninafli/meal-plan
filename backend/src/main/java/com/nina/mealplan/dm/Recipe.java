@@ -14,6 +14,7 @@ public class Recipe {
 	private List<Ingredient> ingredients;
 	private List<String> method;
 	private List<String> tags;
+	private String image;
 
 	@Exclude
 	public String getId() {

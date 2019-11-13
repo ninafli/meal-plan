@@ -1,0 +1,9 @@
+<div class="url-dialog" mat-dialog-content>
+    <mat-form-field class="full-length-input">
+        <input matInput placeholder="Enter image URL" [(ngModel)]="data.url">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { RecipeService } from '../recipe.service';
+import { RecipeService } from '../../recipe.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
@@ -43,10 +43,11 @@ export class RecipeTagComponent implements OnInit {
     // To make sure this does not conflict with OptionSelected Event
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
-      const value = event.value;
+      let value = event.value;
 
       // Add our tag
       if ((value || '').trim()) {
+        value = value.charAt(0).toUpperCase() + value.slice(1);
         this.tags.add(value.trim());
       }
 

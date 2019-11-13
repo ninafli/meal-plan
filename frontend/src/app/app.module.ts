@@ -4,15 +4,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './common/material.module';
-import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
+import { AddRecipeComponent, ImageUrlDialog } from './recipe/add-recipe/add-recipe.component';
 import { MethodComponent } from './recipe/add-recipe/method/method.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './recipe/recipe.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeMainComponent } from './recipe/recipe-main/recipe-main.component';
-import { RecipeTagComponent } from './recipe/recipe-tag/recipe-tag.component';
-import { RecipeCardComponent } from './recipe/recipe-card/recipe-card.component';
+import { RecipeMainComponent } from './recipe/recipe-main.component';
+import { RecipeTagComponent } from './recipe/add-recipe/recipe-tag/recipe-tag.component';
+import { RecipeCardComponent } from './recipe/view-recipe/recipe-card/recipe-card.component';
+import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { RecipeCardComponent } from './recipe/recipe-card/recipe-card.component'
     IngredientItemComponent,
     RecipeMainComponent,
     RecipeTagComponent,
-    RecipeCardComponent
+    RecipeCardComponent,
+    ImageUrlDialog,
+    ViewRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,6 @@ import { RecipeCardComponent } from './recipe/recipe-card/recipe-card.component'
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent],
-  entryComponents: [AddRecipeComponent]
+  entryComponents: [AddRecipeComponent, ImageUrlDialog]
 })
 export class AppModule { }

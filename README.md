@@ -1,10 +1,8 @@
 # To Do
 ## Recipe
-* view recipe
+* view recipe (https://blog.angular-university.io/angular-2-router-nested-routes-and-nested-auxiliary-routes-build-a-menu-navigation-system/)
 * list categories on sidebar 
 
 # FIXME 
-* broken remove tag
-* broken load tag
-* store and look up ingredient amount
-* on add recipe, add ingredient, return key maps to delete
+* change ingredient amount to options
+* figure out keyboard mapping for add recipe

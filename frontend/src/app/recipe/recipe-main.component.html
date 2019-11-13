@@ -8,10 +8,10 @@
       <a mat-list-item [routerLink]="'/recipes'">Recipes</a>
     </mat-nav-list>
   </mat-sidenav>
+  <router-outlet></router-outlet>
   <div class="all-recipes-container">
-    <app-recipe-card class="recipe-card"
-      *ngFor="let recipe of recipes"
-      [(recipe)]="recipe"
-    ></app-recipe-card>
+    <a *ngFor="let recipe of recipes" [routerLink]="['/recipe', recipe.id]">
+      <app-recipe-card class="recipe-card" [(recipe)]="recipe"></app-recipe-card>
+    </a>
   </div>
 </mat-sidenav-container>

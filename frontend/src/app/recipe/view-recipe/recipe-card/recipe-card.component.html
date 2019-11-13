@@ -1,9 +1,5 @@
 <mat-card class="recipe-card">
-  <img
-    mat-card-image
-    src="https://assets.epicurious.com/photos/54b9879f7cbba01c0db81b24/6:4/w_620%2Ch_413/pasta-lentils-kale-6x4.jpg"
-    alt="Photo of a Shiba Inu"
-  />
+  <img mat-card-image [src]="recipe.image" alt="Photo of recipe" />
   <mat-card-header>
     <mat-card-title>{{ recipe.name }}</mat-card-title>
   </mat-card-header>
