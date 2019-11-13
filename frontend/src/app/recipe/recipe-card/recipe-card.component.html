@@ -1,0 +1,17 @@
+<mat-card class="recipe-card">
+  <img
+    mat-card-image
+    src="https://assets.epicurious.com/photos/54b9879f7cbba01c0db81b24/6:4/w_620%2Ch_413/pasta-lentils-kale-6x4.jpg"
+    alt="Photo of a Shiba Inu"
+  />
+  <mat-card-header>
+    <mat-card-title>{{ recipe.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-chip-list>
+      <mat-chip *ngFor="let tag of recipe.tags" [selectable]="false">
+        {{ tag }}
+      </mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+</mat-card>

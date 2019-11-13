@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeMainComponent } from './recipe/recipe-main/recipe-main.component';
 import { RecipeTagComponent } from './recipe/recipe-tag/recipe-tag.component';
+import { RecipeCardComponent } from './recipe/recipe-card/recipe-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RecipeTagComponent } from './recipe/recipe-tag/recipe-tag.component';
     MethodComponent,
     IngredientItemComponent,
     RecipeMainComponent,
-    RecipeTagComponent
+    RecipeTagComponent,
+    RecipeCardComponent
   ],
   imports: [
     BrowserModule,

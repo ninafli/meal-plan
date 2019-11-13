@@ -1,21 +1,24 @@
 .example-container {
-    position: absolute;
-    height: 100%;
+  position: absolute;
+  height: 100%;
+}
+
+.all-recipes-container {
+  display: grid;
+  grid-gap: 5px;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.recipe-card {
+  border-radius: 5px;
+  padding: 20px;
 }
 
 .sidenav {
-    width: 200px;
+  width: 200px;
 }
 
 .add-button {
-    margin: 20px;
-}
-
-.example-card {
-    max-width: 300px;
-}
-
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+  margin: 20px;
 }
