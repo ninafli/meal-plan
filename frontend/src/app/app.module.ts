@@ -14,6 +14,8 @@ import { RecipeMainComponent } from './recipe/recipe-main.component';
 import { RecipeTagComponent } from './recipe/add-recipe/recipe-tag/recipe-tag.component';
 import { RecipeCardComponent } from './recipe/view-recipe/recipe-card/recipe-card.component';
 import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
+import { RecipeSideMenuComponent } from './recipe/recipe-side-menu.component';
+import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards/recipe-cards.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component'
     RecipeTagComponent,
     RecipeCardComponent,
     ImageUrlDialog,
-    ViewRecipeComponent
+    ViewRecipeComponent,
+    RecipeSideMenuComponent,
+    RecipeCardsComponent
   ],
   imports: [
     BrowserModule,

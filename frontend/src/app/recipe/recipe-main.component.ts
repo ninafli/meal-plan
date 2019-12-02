@@ -11,9 +11,7 @@ import { Recipe } from './recipe';
 })
 export class RecipeMainComponent implements OnInit {
 
-  recipes: Recipe[];
-
-  constructor(public dialog: MatDialog, private recipeService: RecipeService) {
+  constructor(public dialog: MatDialog) {
   }
 
   openDialog(): void {
@@ -25,6 +23,5 @@ export class RecipeMainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recipeService.getAll().subscribe(data => { this.recipes = data; console.log(this.recipes); });
   }
 }
