@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AddRecipeComponent } from './add-recipe/add-recipe.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
-import { RecipeService } from './recipe.service';
-import { Recipe } from './recipe';
 
 @Component({
   selector: 'app-recipe-main',
@@ -11,15 +7,7 @@ import { Recipe } from './recipe';
 })
 export class RecipeMainComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AddRecipeComponent, {
-      width: '800px',
-      autoFocus: true,
-      disableClose: true
-    });
+  constructor() {
   }
 
   ngOnInit() {
