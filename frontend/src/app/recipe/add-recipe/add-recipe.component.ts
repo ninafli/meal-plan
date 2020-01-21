@@ -1,8 +1,8 @@
 import { RecipeService } from './../recipe.service';
 import { Ingredient } from '../ingredient';
 import { Component, OnInit, OnChanges, ViewChild, Inject } from '@angular/core';
-import { IngredientItemComponent } from './ingredient-item/ingredient-item.component';
-import { MethodComponent } from './method/method.component';
+import { IngredientItemComponent } from '../ingredient-item/ingredient-item.component';
+import { MethodComponent } from '../method/method.component';
 import { Recipe } from '../recipe';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';

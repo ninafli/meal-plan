@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { RecipeService } from '../../recipe.service';
+import { RecipeService } from '../recipe.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({

@@ -1,7 +1,6 @@
 import { RecipeSideMenuComponent } from './recipe/recipe-side-menu.component';
-import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards/recipe-cards.component';
-import { RecipeCardComponent } from './recipe/view-recipe/recipe-card/recipe-card.component';
-import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
+import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards.component';
+import { RecipeCardComponent } from './recipe/view-recipe/recipe-card.component';
 import { RecipeMainComponent } from './recipe/recipe-main.component';
 import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
 import { NgModule } from '@angular/core';
@@ -16,13 +15,16 @@ const routes: Routes = [
         component: RecipeCardsComponent
       },
       {
+        path: ':id',
+        component: RecipeCardComponent
+      },
+      {
         path: '',
         outlet: 'sidemenu',
         component: RecipeSideMenuComponent
-      }
+      },
     ]
   },
-  { path: 'recipe/:id', component: ViewRecipeComponent }
 ];
 
 @NgModule({

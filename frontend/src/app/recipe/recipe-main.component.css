@@ -1,18 +1,14 @@
-.example-container {
+.recipe-main-container {
   position: absolute;
   left: 0;
   right: 0;
   height: 100%;
 }
 
-.all-recipes-container {
-  display: grid;
-  grid-gap: 5px;
-  width: 100%;
-  grid-template-columns: repeat(3, 1fr);
+.mat-sidenav {
+  padding: 5px;
 }
 
-.recipe-card {
-  border-radius: 5px;
-  padding: 20px;
+.mat-sidenav-content {
+  padding: 5px;
 }
