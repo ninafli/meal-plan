@@ -41,7 +41,8 @@ import {
     MatStepperModule,
     MatDividerModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule
   ],
   exports: [
     MatButtonModule,
@@ -60,7 +61,8 @@ import {
     MatTabsModule,
     MatDividerModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule
   ]
 })
 export class MaterialModule { }

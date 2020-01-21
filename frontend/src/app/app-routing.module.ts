@@ -5,6 +5,7 @@ import { RecipeMainComponent } from './recipe/recipe-main.component';
 import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
 
 const routes: Routes = [
   { path: 'add-recipe', component: AddRecipeComponent },
@@ -16,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: ':id',
-        component: RecipeCardComponent
+        component: ViewRecipeComponent
       },
       {
         path: '',

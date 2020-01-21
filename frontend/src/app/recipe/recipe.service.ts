@@ -21,6 +21,10 @@ export class RecipeService {
     this.http.post<Recipe>(this.url, recipe).subscribe(res => console.log(res));
   }
 
+  getRecipe(id: string): Observable<Recipe> {
+    return this.http.get<Recipe>(this.url + '/' + id);
+  }
+
   getTags(): Observable<string[]> {
     return this.http.get<string[]>(this.url + '/tag');
   }

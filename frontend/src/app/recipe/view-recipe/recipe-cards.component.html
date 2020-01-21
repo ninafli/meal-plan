@@ -1,5 +1,5 @@
 <div class="all-recipes-container">
-  <a *ngFor="let recipe of recipes" [routerLink]="recipe.id" [routerLinkActive]="['is-active']">
+  <a *ngFor="let recipe of recipes" [routerLink]="['/recipes', recipe.id]" [routerLinkActive]="['is-active']">
     <app-recipe-card class="recipe-card" [(recipe)]="recipe"></app-recipe-card>
   </a>
 </div>
