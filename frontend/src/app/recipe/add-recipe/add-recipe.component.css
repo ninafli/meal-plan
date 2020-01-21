@@ -1,21 +1,24 @@
-.step-container {
-  /* display: flex;
-    justify-content: flex-start;
-    flex-direction: column; */
-  height: 600px;
-}
-
-.actions-container {
+.dialog-container {
+  height: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
-.recipe-tags {
-  flex-grow: 2;
+.mat-dialog-content {
+  max-height: 100%;
+}
+
+.spacer {
+  flex-grow: 1;
 }
 
 .recipe-name {
   font-size: 20px;
+  width: 100%;
+}
+
+.recipe-tags {
+  flex-grow: 2;
 }
 
 .upload-container {
@@ -33,10 +36,6 @@
   width: 100%;
   height: auto;
   overflow: hidden;
-}
-
-.full-length-input {
-  width: 100%;
 }
 
 .upload-button {

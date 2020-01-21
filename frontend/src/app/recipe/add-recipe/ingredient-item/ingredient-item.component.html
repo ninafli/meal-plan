@@ -24,10 +24,11 @@
     </mat-form-field>
   </div>
 
-  <button mat-icon-button class="ingredient-item delete-button" (click)="deleteIngredient()">
-    <mat-icon>clear</mat-icon>
+  <button mat-icon-button class="ingredient-item delete-button" (click)="deleteIngredient()" [autofocus]="false">
+    <mat-icon>delete</mat-icon>
   </button>
 </div>
+
 <div *ngIf="isNew" class="ingredient-add">
   <button mat-stroked-button (click)="addIngredient()">
     <i class="material-icons">add</i> Add another

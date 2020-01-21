@@ -36,6 +36,7 @@ export class IngredientItemComponent implements OnInit {
   }
 
   deleteIngredient() {
+    console.log("here");
     if (!this.isNew) {
       this.ingredientDeleted.emit(this.ingredient);
     }

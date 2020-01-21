@@ -1,59 +1,66 @@
-<mat-dialog-content>
-  <mat-form-field class="full-length-input recipe-name">
-    <input matInput placeholder="Recipe Name" [(ngModel)]="recipeName" />
-  </mat-form-field>
-  <mat-horizontal-stepper [linear]="true" #stepper>
-    <mat-step>
-      <form>
-        <ng-template matStepLabel>Ingredients</ng-template>
-        <div class="step-container">
+<div class='dialog-container'>
+  <div class="child-container">
+    <mat-form-field mat-dialog-title class="recipe-name">
+      <input matInput placeholder="Recipe Name" [(ngModel)]="recipeName" cdkFocusInitial />
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-content class="child-container">
+    <mat-horizontal-stepper [linear]="true">
+      <mat-step>
+        <form>
+          <ng-template matStepLabel>Ingredients</ng-template>
           <app-ingredient-item *ngFor="let ingredient of ingredients" ngDefaultControl [(ingredient)]="ingredient"
             (ingredientDeleted)="deleteIngredient($event)">
           </app-ingredient-item>
           <app-ingredient-item (ingredientAdded)="addIngredient($event)" #newIngredient>
           </app-ingredient-item>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <form>
-        <ng-template matStepLabel>Directions</ng-template>
-        <div class="step-container">
-          <app-method *ngFor="let method of methods; index as i" ngDefaultControl [(method)]="method" [(index)]="i">
-          </app-method>
-          <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <form>
-        <ng-template matStepLabel>Photo</ng-template>
-        <div class="step-container upload-container">
-          <div>
-            <mat-menu #uploadImageMenu="matMenu">
-              <button mat-menu-item (click)="openImageUrlDialog()">from URL</button>
-              <button mat-menu-item (click)="fileUploadInput.click()">from computer</button>
-            </mat-menu>
-            <button class="upload-button" mat-raised-button [matMenuTriggerFor]="uploadImageMenu">
-              Upload
-            </button>
-            <input #fileUploadInput style="display:none" type="file" accept='image/*'
-            (change)="onFileSelected(fileUploadInput.files[0])">
+        </form>
+      </mat-step>
+      <mat-step>
+        <form>
+          <ng-template matStepLabel>Directions</ng-template>
+          <div class="step-container">
+            <app-method *ngFor="let method of methods; index as i" ngDefaultControl [(method)]="method" [(index)]="i">
+            </app-method>
+            <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
           </div>
-          <div *ngIf="imageData" class="image-div">
-            <img [src]="imageData">
+        </form>
+      </mat-step>
+      <mat-step>
+        <form>
+          <ng-template matStepLabel>Photo</ng-template>
+          <div class="step-container upload-container">
+            <div>
+              <mat-menu #uploadImageMenu="matMenu">
+                <button mat-menu-item (click)="openImageUrlDialog()">from URL</button>
+                <button mat-menu-item (click)="fileUploadInput.click()">from computer</button>
+              </mat-menu>
+              <button class="upload-button" mat-raised-button [matMenuTriggerFor]="uploadImageMenu">
+                Upload
+              </button>
+              <input #fileUploadInput style="display:none" type="file" accept='image/*'
+                (change)="onFileSelected(fileUploadInput.files[0])">
+            </div>
+            <div *ngIf="imageData" class="image-div">
+              <img [src]="imageData">
+            </div>
           </div>
-        </div>
-      </form>
-    </mat-step>
-  </mat-horizontal-stepper>
-</mat-dialog-content>
-<mat-dialog-actions class="actions-container">
-  <app-recipe-tag [(tags)]="tags" class="recipe-tags"></app-recipe-tag>
-  <div>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [disabled]="!isValid()" (click)="saveRecipe()">
-      Save
-    </button>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
   </div>
-</mat-dialog-actions>
+
+  <!-- fix for pushing the mat-dialog-actions to the bottom-->
+  <div class="spacer"></div>
+
+  <div mat-dialog-actions class="child-container">
+    <app-recipe-tag [(tags)]="tags" class="recipe-tags"></app-recipe-tag>
+    <div>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button [disabled]="!isValid()" (click)="saveRecipe()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
