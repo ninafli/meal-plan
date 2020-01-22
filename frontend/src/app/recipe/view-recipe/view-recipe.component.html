@@ -1,29 +1,44 @@
-<mat-accordion multi="true">
-  <mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Ingredients
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+<div *ngIf="recipe$ | async as recipe" class='view-recipe-container'>
+  <h1 class="header">{{recipe.name}}</h1>
 
-    <div *ngIf="recipe$ | async as recipe">
-      <p *ngFor="let ingredient of recipe.ingredients"></p>
-    </div>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    [expanded]="true"
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Directions
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+  <mat-chip-list class="tags">
+    <mat-chip *ngFor="let tag of recipe.tags" [selectable]="false">
+      {{ tag }}
+    </mat-chip>
+  </mat-chip-list>
 
-    <mat-form-field>
-      <input matInput placeholder="First name" />
-    </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Age" />
-    </mat-form-field>
-  </mat-expansion-panel>
-</mat-accordion>
+  <mat-accordion class="recipe-content" multi="true">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Ingredients
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <p *ngFor="let ingredient of recipe.ingredients">{{print(ingredient)}}</p>
+
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Directions
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <p *ngFor="let direction of recipe.method; let i = index">{{i+1}}. {{direction}}</p>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="image">
+    <img class="recipe-image" mat-card-image [src]="recipe.image" alt="Photo of recipe" />
+  </div>
+
+  <div class="delete-button">
+    <button mat-mini-fab aria-label="delete icon" (click)="delete(recipe)" color="warn">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+</div>

@@ -11,7 +11,6 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 export class RecipeSideMenuComponent implements OnInit {
 
   constructor(route: ActivatedRoute, public dialog: MatDialog) {
-    route.params.subscribe(params => console.log('side menu id parameter', params.id));
   }
 
   ngOnInit() {

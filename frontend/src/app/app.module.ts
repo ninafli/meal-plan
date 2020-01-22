@@ -1,3 +1,4 @@
+import { FractionPipe } from './common/fraction.pipe';
 import { IngredientItemComponent } from './recipe/ingredient-item/ingredient-item.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,7 @@ import { RecipeSideMenuComponent } from './recipe/recipe-side-menu.component';
 import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards.component';
 import { RecipeCardComponent } from './recipe/view-recipe/recipe-card.component';
 import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
+import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component'
     RecipeSideMenuComponent,
     RecipeCardsComponent,
     RecipeCardComponent,
-    ViewRecipeComponent
+    ViewRecipeComponent,
+    FractionPipe,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +43,9 @@ import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component'
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [RecipeService],
+  exports: [FractionPipe],
+  providers: [RecipeService, FractionPipe],
   bootstrap: [AppComponent],
-  entryComponents: [AddRecipeComponent, ImageUrlDialog]
+  entryComponents: [AddRecipeComponent, ImageUrlDialog, ConfirmDialogComponent]
 })
 export class AppModule { }

@@ -15,6 +15,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.SetOptions;
+import com.google.cloud.firestore.WriteResult;
 import com.google.common.collect.Maps;
 import com.nina.mealplan.dm.Recipe;
 import com.nina.mealplan.exception.DatabaseException;
@@ -84,5 +85,35 @@ public class RecipeServiceImpl implements RecipeService {
 			throw new DatabaseException(e);
 		}
 		return recipes;
+	}
+
+	@Override
+	public Recipe find(String recipeId) throws DatabaseException {
+		Recipe recipe = null;
+		try {
+			DocumentReference docRef = fireStore.collection(Recipe.class.getSimpleName()).document(recipeId);
+			ApiFuture<DocumentSnapshot> future = docRef.get();
+			DocumentSnapshot document = future.get();
+			if (document.exists()) {
+				// convert document to POJO
+				recipe = document.toObject(Recipe.class);
+				recipe.setId(document.getId());
+			}
+		} catch (InterruptedException | ExecutionException e) {
+			throw new DatabaseException(e);
+		}
+		return recipe;
+	}
+
+	@Override
+	public void delete(String recipeId) throws DatabaseException {
+		Recipe recipe = null;
+		try {
+			ApiFuture<WriteResult> writeResult = fireStore.collection(Recipe.class.getSimpleName()).document(recipeId)
+					.delete();
+			writeResult.get();
+		} catch (InterruptedException | ExecutionException e) {
+			throw new DatabaseException(e);
+		}
 	}
 }

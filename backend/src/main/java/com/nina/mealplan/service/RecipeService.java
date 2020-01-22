@@ -13,4 +13,8 @@ public interface RecipeService {
 	Recipe save(Recipe recipe) throws DatabaseException;
 
 	List<Recipe> findAll() throws DatabaseException;
+
+	Recipe find(String recipeId) throws DatabaseException;
+
+	void delete(String id) throws DatabaseException;
 }

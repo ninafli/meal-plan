@@ -63,6 +63,7 @@ import {
     MatChipsModule,
     MatAutocompleteModule,
     MatExpansionModule
-  ]
+  ],
+  declarations: []
 })
 export class MaterialModule { }

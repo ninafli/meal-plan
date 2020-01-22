@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RecipeService {
-
   private url: string;
 
   constructor(private http: HttpClient) {
@@ -31,5 +30,9 @@ export class RecipeService {
 
   getImage(url: string): Observable<Blob> {
     return this.http.get(url, { responseType: 'blob' });
+  }
+
+  delete(id: string) {
+    return this.http.delete<Recipe>(this.url + '/' + id);
   }
 }
