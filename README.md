@@ -1,8 +1,8 @@
 # TODO
 ## Recipe
-* view recipe 
+* add more recipes 
 * list categories on sidebar 
+* start menu planning... 
 
 # FIXME 
 * figure out keyboard mapping for add recipe
-* broken router for view recipe https://angular.io/guide/router
