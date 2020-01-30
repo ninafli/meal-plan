@@ -32,6 +32,10 @@ export class RecipeService {
     return this.http.get(url, { responseType: 'blob' });
   }
 
+  getTagSummary(): Observable<[]> {
+    return this.http.get<[]>(this.url + '/tag-summary');
+  }
+
   delete(id: string) {
     return this.http.delete<Recipe>(this.url + '/' + id);
   }

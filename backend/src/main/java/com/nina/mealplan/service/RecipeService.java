@@ -1,5 +1,6 @@
 package com.nina.mealplan.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -17,4 +18,8 @@ public interface RecipeService {
 	Recipe find(String recipeId) throws DatabaseException;
 
 	void delete(String id) throws DatabaseException;
+
+	HashMap<String, Integer> getTagSummary() throws DatabaseException;
+
+	List<Recipe> findWithTag(String tag) throws DatabaseException;
 }

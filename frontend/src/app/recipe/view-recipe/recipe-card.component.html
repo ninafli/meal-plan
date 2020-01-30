@@ -12,7 +12,7 @@
   </mat-card-header>
   <mat-card-content>
     <mat-chip-list>
-      <mat-chip *ngFor="let tag of recipe.tags" [selectable]="false">
+      <mat-chip class="mat-small" *ngFor="let tag of recipe.tags" [selectable]="false">
         {{ tag }}
       </mat-chip>
     </mat-chip-list>

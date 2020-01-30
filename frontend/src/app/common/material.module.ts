@@ -20,6 +20,7 @@ import {
   MatStepperModule,
   MatChipsModule,
   MatAutocompleteModule,
+  MatBadgeModule
 } from '@angular/material';
 
 @NgModule({
@@ -42,7 +43,8 @@ import {
     MatDividerModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatBadgeModule
   ],
   exports: [
     MatButtonModule,
@@ -62,7 +64,8 @@ import {
     MatDividerModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatBadgeModule
   ],
   declarations: []
 })

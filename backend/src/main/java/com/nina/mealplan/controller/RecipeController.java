@@ -1,5 +1,6 @@
 package com.nina.mealplan.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -48,9 +49,18 @@ public class RecipeController {
 		return recipeService.getTags();
 	}
 
+	@GetMapping("/tag-summary")
+	public HashMap<String, Integer> getTagSummary() throws DatabaseException {
+		return recipeService.getTagSummary();
+	}
+
+	@GetMapping("/tag/{tag}")
+	public List<Recipe> findRecipesWithTag(@PathVariable String tag) throws DatabaseException {
+		return recipeService.findWithTag(tag);
+	}
+
 	@PostMapping
 	public Recipe save(@RequestBody Recipe recipe) throws DatabaseException {
 		return getRecipeService().save(recipe);
 	}
-
 }

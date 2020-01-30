@@ -1,6 +1,7 @@
 package com.nina.mealplan.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,13 +13,13 @@ import org.springframework.stereotype.Service;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.FieldValue;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.SetOptions;
-import com.google.cloud.firestore.WriteResult;
 import com.google.common.collect.Maps;
 import com.nina.mealplan.dm.Recipe;
 import com.nina.mealplan.exception.DatabaseException;
+import com.nina.mealplan.exception.RecipeNotFound;
 
 import lombok.Getter;
 
@@ -33,21 +34,8 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	public Set<String> getTags() throws DatabaseException {
 		Set<String> result = new HashSet<String>();
-		DocumentSnapshot documentSnapshot;
-		try {
-			documentSnapshot = getTagsCollection().get().get();
-			if (documentSnapshot.exists()) {
-				result = documentSnapshot.getData().keySet();
-			}
-		} catch (InterruptedException | ExecutionException e) {
-			throw new DatabaseException(e);
-		}
-
+		fireStore.collection(TAGS_COLLECTION).listDocuments().forEach(tag -> result.add(tag.getId()));
 		return result;
-	}
-
-	private DocumentReference getTagsCollection() throws DatabaseException {
-		return fireStore.collection(TAGS_COLLECTION).document(TAGS_COLLECTION);
 	}
 
 	@Override
@@ -57,13 +45,26 @@ public class RecipeServiceImpl implements RecipeService {
 
 		Recipe addedRecipe = null;
 		try {
-			DocumentSnapshot recipeDocSnapshot = future.get().get().get();
-			addedRecipe = recipeDocSnapshot.toObject(Recipe.class);
-			addedRecipe.setId(recipeDocSnapshot.getId());
-			if (recipe.getTags() != null && recipe.getTags().size() > 0) {
-				fireStore.collection(TAGS_COLLECTION).document(TAGS_COLLECTION)
-						.set(Maps.asMap(new HashSet<String>(recipe.getTags()), tag -> null), SetOptions.merge());
+			DocumentReference recipeRef = future.get();
+			recipeRef.update("id", recipeRef.getId()).get();
+
+			// save the recipe tags
+			if (recipe.getTags() != null) {
+
+				for (String tag : recipe.getTags()) {
+					DocumentReference ref = fireStore.collection(TAGS_COLLECTION).document(tag);
+					if (!ref.get().get().exists()) {
+						// this is new tag, need to create it
+						HashMap<String, FieldValue> values = Maps.newHashMap();
+						values.put("reference", FieldValue.arrayUnion(recipeRef));
+						ref.set(values).get();
+					} else {
+						ref.update("reference", FieldValue.arrayUnion(recipeRef)).get();
+					}
+				}
 			}
+
+			addedRecipe = recipeRef.get().get().toObject(Recipe.class);
 		} catch (InterruptedException | ExecutionException e) {
 			throw new DatabaseException(e);
 		}
@@ -72,33 +73,15 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public List<Recipe> findAll() throws DatabaseException {
-		List<Recipe> recipes = new ArrayList<Recipe>();
-		try {
-			for (QueryDocumentSnapshot snapshot : fireStore.collection(Recipe.class.getSimpleName()).get().get()
-					.getDocuments()) {
-				Recipe recipe = snapshot.toObject(Recipe.class);
-				recipe.setId(snapshot.getId());
-				recipes.add(recipe);
-			}
-		} catch (InterruptedException | ExecutionException e) {
-			throw new DatabaseException(e);
-		}
-		return recipes;
-	}
-
-	@Override
 	public Recipe find(String recipeId) throws DatabaseException {
 		Recipe recipe = null;
 		try {
-			DocumentReference docRef = fireStore.collection(Recipe.class.getSimpleName()).document(recipeId);
-			ApiFuture<DocumentSnapshot> future = docRef.get();
-			DocumentSnapshot document = future.get();
-			if (document.exists()) {
-				// convert document to POJO
-				recipe = document.toObject(Recipe.class);
-				recipe.setId(document.getId());
+			DocumentReference ref = findRecipe(recipeId);
+			DocumentSnapshot snapshot = ref.get().get();
+			if (!snapshot.exists()) {
+				throw new RecipeNotFound(recipeId);
 			}
+			recipe = snapshot.toObject(Recipe.class);
 		} catch (InterruptedException | ExecutionException e) {
 			throw new DatabaseException(e);
 		}
@@ -106,14 +89,72 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public void delete(String recipeId) throws DatabaseException {
-		Recipe recipe = null;
+	public List<Recipe> findAll() throws DatabaseException {
+		List<Recipe> recipes = new ArrayList<Recipe>();
 		try {
-			ApiFuture<WriteResult> writeResult = fireStore.collection(Recipe.class.getSimpleName()).document(recipeId)
-					.delete();
-			writeResult.get();
+			for (QueryDocumentSnapshot snapshot : fireStore.collection(Recipe.class.getSimpleName()).get().get()
+					.getDocuments()) {
+				recipes.add(snapshot.toObject(Recipe.class));
+			}
 		} catch (InterruptedException | ExecutionException e) {
 			throw new DatabaseException(e);
 		}
+		return recipes;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void delete(String recipeId) throws DatabaseException {
+		try {
+			DocumentReference recipeRef = findRecipe(recipeId);
+			DocumentSnapshot snapshot = recipeRef.get().get();
+			if (snapshot.exists()) {
+				for (String tag : (List<String>) snapshot.get("tags")) {
+					DocumentReference tagRef = fireStore.collection(TAGS_COLLECTION).document(tag);
+					tagRef.update("reference", FieldValue.arrayRemove(recipeRef)).get();
+				}
+
+				recipeRef.delete().get();
+			}
+		} catch (InterruptedException | ExecutionException e) {
+			throw new DatabaseException(e);
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public HashMap<String, Integer> getTagSummary() throws DatabaseException {
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		try {
+			for (DocumentReference ref : fireStore.collection(TAGS_COLLECTION).listDocuments()) {
+				result.put(ref.getId(), ((List) ref.get().get().get("reference")).size());
+			}
+		} catch (InterruptedException | ExecutionException e) {
+			throw new DatabaseException(e);
+		}
+		return result;
+	}
+
+	@Override
+	public List<Recipe> findWithTag(String tag) throws DatabaseException {
+		List<Recipe> result = new ArrayList<Recipe>();
+		try {
+			DocumentSnapshot tagSnapshot = fireStore.collection(TAGS_COLLECTION).document(tag).get().get();
+			if (tagSnapshot.exists()) {
+				for (Object value : tagSnapshot.getData().values()) {
+					DocumentSnapshot recipeSnapshot = ((DocumentReference) value).get().get();
+					result.add(recipeSnapshot.toObject(Recipe.class));
+				}
+			}
+		} catch (InterruptedException | ExecutionException e) {
+			throw new DatabaseException(e);
+		}
+
+		return result;
+	}
+
+	private DocumentReference findRecipe(String recipeId)
+			throws RecipeNotFound, InterruptedException, ExecutionException {
+		return fireStore.collection(Recipe.class.getSimpleName()).document(recipeId);
 	}
 }

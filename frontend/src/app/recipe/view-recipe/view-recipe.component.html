@@ -1,8 +1,8 @@
 <div *ngIf="recipe$ | async as recipe" class='view-recipe-container'>
-  <h1 class="header">{{recipe.name}}</h1>
+  <h1 class="header mat-h1">{{recipe.name}}</h1>
 
   <mat-chip-list class="tags">
-    <mat-chip *ngFor="let tag of recipe.tags" [selectable]="false">
+    <mat-chip class="mat-small" *ngFor="let tag of recipe.tags" [selectable]="false">
       {{ tag }}
     </mat-chip>
   </mat-chip-list>

@@ -1,3 +1,4 @@
+import { RecipeService } from './recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -10,10 +11,13 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 })
 export class RecipeSideMenuComponent implements OnInit {
 
-  constructor(route: ActivatedRoute, public dialog: MatDialog) {
+  tagSummary: [];
+
+  constructor(route: ActivatedRoute, public dialog: MatDialog, private recipeService: RecipeService) {
   }
 
   ngOnInit() {
+    this.recipeService.getTagSummary().subscribe(data => this.tagSummary = data);
   }
 
   openDialog(): void {
@@ -24,5 +28,4 @@ export class RecipeSideMenuComponent implements OnInit {
       disableClose: true
     });
   }
-
 }
