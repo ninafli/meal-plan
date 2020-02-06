@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './common/material.module';
-import { AddRecipeComponent, ImageUrlDialog } from './recipe/add-recipe/add-recipe.component';
+import { RecipeEditorComponent, ImageUrlDialog } from './recipe/recipe-editor/recipe-editor.component';
 import { MethodComponent } from './recipe/method/method.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './recipe/recipe.service';
@@ -22,7 +22,7 @@ import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.c
 @NgModule({
   declarations: [
     AppComponent,
-    AddRecipeComponent,
+    RecipeEditorComponent,
     MethodComponent,
     IngredientItemComponent,
     RecipeMainComponent,
@@ -46,6 +46,6 @@ import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.c
   exports: [FractionPipe],
   providers: [RecipeService, FractionPipe],
   bootstrap: [AppComponent],
-  entryComponents: [AddRecipeComponent, ImageUrlDialog, ConfirmDialogComponent]
+  entryComponents: [RecipeEditorComponent, ImageUrlDialog, ConfirmDialogComponent]
 })
 export class AppModule { }

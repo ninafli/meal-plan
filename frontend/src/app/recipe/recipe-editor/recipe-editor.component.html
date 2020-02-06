@@ -1,7 +1,7 @@
 <div class='dialog-container'>
   <div class="child-container">
     <mat-form-field mat-dialog-title class="recipe-name">
-      <input matInput placeholder="Recipe Name" [(ngModel)]="recipeName" cdkFocusInitial />
+      <input matInput placeholder="Recipe Name" [(ngModel)]="recipe.name" cdkFocusInitial />
     </mat-form-field>
   </div>
 
@@ -10,7 +10,7 @@
       <mat-step>
         <form>
           <ng-template matStepLabel>Ingredients</ng-template>
-          <app-ingredient-item *ngFor="let ingredient of ingredients" ngDefaultControl [(ingredient)]="ingredient"
+          <app-ingredient-item *ngFor="let ingredient of recipe.ingredients" ngDefaultControl [(ingredient)]="ingredient"
             (ingredientDeleted)="deleteIngredient($event)">
           </app-ingredient-item>
           <app-ingredient-item (ingredientAdded)="addIngredient($event)" #newIngredient>
@@ -21,7 +21,7 @@
         <form>
           <ng-template matStepLabel>Directions</ng-template>
           <div class="step-container">
-            <app-method *ngFor="let method of methods; index as i" ngDefaultControl [(method)]="method" [(index)]="i">
+            <app-method *ngFor="let method of recipe.method; index as i" ngDefaultControl [(method)]="method" [(index)]="i">
             </app-method>
             <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
           </div>
@@ -42,8 +42,8 @@
               <input #fileUploadInput style="display:none" type="file" accept='image/*'
                 (change)="onFileSelected(fileUploadInput.files[0])">
             </div>
-            <div *ngIf="imageData" class="image-div">
-              <img [src]="imageData">
+            <div *ngIf="recipe.image" class="image-div">
+              <img [src]="recipe.image">
             </div>
           </div>
         </form>
@@ -55,7 +55,7 @@
   <div class="spacer"></div>
 
   <div mat-dialog-actions>
-    <app-recipe-tag [(tags)]="tags" class="recipe-tags"></app-recipe-tag>
+    <app-recipe-tag [(tags)]="recipe.tags" class="recipe-tags"></app-recipe-tag>
     <div>
       <button mat-button mat-dialog-close>Cancel</button>
       <button mat-button [disabled]="!isValid()" (click)="saveRecipe()">

@@ -2,7 +2,7 @@ import { RecipeService } from './recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipeEditorComponent } from './recipe-editor/recipe-editor.component';
 
 @Component({
   selector: 'app-recipe-side-menu',
@@ -21,7 +21,7 @@ export class RecipeSideMenuComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddRecipeComponent, {
+    const dialogRef = this.dialog.open(RecipeEditorComponent, {
       width: '800px',
       height: '600px',
       autoFocus: true,

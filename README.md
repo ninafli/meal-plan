@@ -1,7 +1,7 @@
 # TODO
 ## Recipe
 * add more recipes 
-* start menu planning... 
+* weekly menu planning, drag and drop https://material.angular.io/cdk/drag-drop/overview
 
 # FIXME 
 * figure out keyboard mapping for add recipe

@@ -18,7 +18,7 @@ export class RecipeTagComponent implements OnInit {
   filteredTags: Observable<string[]>;
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  @Input() tags: Set<string>;
+  @Input() tags: string[];
   @ViewChild('tagInput', { static: false }) tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
@@ -34,8 +34,8 @@ export class RecipeTagComponent implements OnInit {
 
   ngOnInit() { }
 
-  remove(tag: string): void {
-    this.tags.delete(tag);
+  remove(index: number): void {
+    this.tags.splice(index, 1);
   }
 
   add(event: MatChipInputEvent): void {
@@ -48,7 +48,7 @@ export class RecipeTagComponent implements OnInit {
       // Add our tag
       if ((value || '').trim()) {
         value = value.charAt(0).toUpperCase() + value.slice(1);
-        this.tags.add(value.trim());
+        this.tags.push(value.trim());
       }
 
       // Reset the input value
@@ -61,7 +61,7 @@ export class RecipeTagComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.add(event.option.viewValue);
+    this.tags.push(event.option.viewValue);
     this.tagInput.nativeElement.value = '';
     this.tagCtrl.setValue(null);
   }

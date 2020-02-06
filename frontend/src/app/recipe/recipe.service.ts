@@ -13,11 +13,20 @@ export class RecipeService {
     this.url = 'http://localhost:8080/recipe';
   }
 
-  getAll(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.url);
+  find(tag?: string): Observable<Recipe[]> {
+    if (tag) {
+      return this.http.get<Recipe[]>(this.url + '?tag=' + tag);
+    } else {
+      return this.http.get<Recipe[]>(this.url);
+    }
   }
-  save(recipe: Recipe) {
-    this.http.post<Recipe>(this.url, recipe).subscribe(res => console.log(res));
+
+  create(recipe: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(this.url, recipe);
+  }
+
+  update(recipe: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(this.url, recipe);
   }
 
   getRecipe(id: string): Observable<Recipe> {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
-import { AddRecipeComponent } from './recipe/add-recipe/add-recipe.component';
+import { RecipeEditorComponent } from './recipe/recipe-editor/recipe-editor.component';
 
 @Component({
   selector: 'app-root',

@@ -32,10 +32,14 @@
   </mat-accordion>
 
   <div class="image">
-    <img class="recipe-image" mat-card-image [src]="recipe.image" alt="Photo of recipe" />
+    <!-- <img class="recipe-image" mat-card-image [src]="recipe.image" alt="Photo of recipe" /> -->
   </div>
 
-  <div class="delete-button">
+
+  <div class="button-group">
+    <button mat-mini-fab aria-label="edit icon" (click)="edit(recipe)" color="primary">
+      <mat-icon>edit</mat-icon>
+    </button>
     <button mat-mini-fab aria-label="delete icon" (click)="delete(recipe)" color="warn">
       <mat-icon>delete</mat-icon>
     </button>

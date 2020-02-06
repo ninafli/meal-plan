@@ -1,6 +1,6 @@
 <mat-form-field class="tags-list">
   <mat-chip-list #tagList aria-label="Tags">
-    <mat-chip *ngFor="let tag of tags" [selectable]="true" [removable]="true" (removed)="remove(tag)">
+    <mat-chip *ngFor="let tag of tags; index as i" [selectable]="true" [removable]="true" (removed)="remove(i)">
       {{ tag | titlecase}}
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>

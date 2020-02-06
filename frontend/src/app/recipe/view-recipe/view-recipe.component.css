@@ -36,9 +36,13 @@
     grid-row-start: 3;
 }
 
-.delete-button {
+.button-group {
     grid-column-start: 2;
     grid-row-start: 4;
     justify-self: end;
     align-self: end;
+}
+
+.button-group button {
+    margin-right: 8px;
 }

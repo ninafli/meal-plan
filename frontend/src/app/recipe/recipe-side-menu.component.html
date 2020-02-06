@@ -3,9 +3,10 @@
 </button>
 <mat-divider></mat-divider>
 <mat-nav-list>
-  <a mat-list-item [routerLink]="'/recipes'">Recipes</a>
+  <a mat-list-item [routerLink]="'/recipes'">All Recipes</a>
 
-  <a mat-list-item *ngFor="let tag of tagSummary | keyvalue" [routerLink]="'/recipes'">
+  <a mat-list-item *ngFor="let tag of tagSummary | keyvalue" [routerLink]="'/recipes'"
+    [queryParams]="{ 'tag': tag.key}">
     <div matBadge="{{tag.value}}" matBadgeOverlap="false">
       {{tag.key}}
     </div>

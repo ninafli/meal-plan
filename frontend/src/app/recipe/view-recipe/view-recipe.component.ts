@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../ingredient';
 import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/common/confirm-dialog/confirm-dialog.component';
+import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
   selector: 'app-view-recipe',
@@ -46,11 +47,20 @@ export class ViewRecipeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      console.log(dialogResult);
       if (dialogResult) {
         this.recipeService.delete(recipe.id).subscribe(data =>
           this.router.navigate(['/recipes']));
       }
+    });
+  }
+
+  edit(recipe: Recipe) {
+    const dialogRef = this.dialog.open(RecipeEditorComponent, {
+      width: '800px',
+      height: '600px',
+      autoFocus: true,
+      disableClose: true,
+      data: { recipe }
     });
   }
 }

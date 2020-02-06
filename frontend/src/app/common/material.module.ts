@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import {
   MatButtonModule,
   MatMenuModule,
@@ -44,7 +45,8 @@ import {
     MatChipsModule,
     MatAutocompleteModule,
     MatExpansionModule,
-    MatBadgeModule
+    MatBadgeModule,
+    DragDropModule,
   ],
   exports: [
     MatButtonModule,
@@ -65,7 +67,8 @@ import {
     MatChipsModule,
     MatAutocompleteModule,
     MatExpansionModule,
-    MatBadgeModule
+    MatBadgeModule,
+    DragDropModule,
   ],
   declarations: []
 })
