@@ -1,3 +1,4 @@
+import { WeeklyMenuComponent } from './weekly-menu/weekly-menu.component';
 import { RecipeSideMenuComponent } from './recipe/recipe-side-menu.component';
 import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards.component';
 import { RecipeCardComponent } from './recipe/view-recipe/recipe-card.component';
@@ -25,6 +26,9 @@ const routes: Routes = [
         component: RecipeSideMenuComponent
       },
     ]
+  },
+  {
+    path: 'weekly-menu', component: WeeklyMenuComponent
   },
 ];
 

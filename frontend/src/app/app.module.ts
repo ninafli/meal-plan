@@ -18,6 +18,7 @@ import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards.componen
 import { RecipeCardComponent } from './recipe/view-recipe/recipe-card.component';
 import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
 import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
+import { WeeklyMenuComponent } from './weekly-menu/weekly-menu.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.c
     RecipeCardComponent,
     ViewRecipeComponent,
     FractionPipe,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    WeeklyMenuComponent
   ],
   imports: [
     BrowserModule,
