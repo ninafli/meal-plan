@@ -28,8 +28,18 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'weekly-menu', component: WeeklyMenuComponent
-  },
+    path: 'weekly-menu', component: WeeklyMenuComponent, children: [
+      {
+        path: '',
+        component: WeeklyMenuComponent
+      },
+      {
+        path: '',
+        outlet: 'sidemenu',
+        component: RecipeSideMenuComponent
+      },
+    ]
+  }
 ];
 
 @NgModule({

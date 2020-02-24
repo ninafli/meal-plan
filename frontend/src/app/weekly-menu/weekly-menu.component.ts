@@ -26,11 +26,23 @@ export class WeeklyMenuComponent implements OnInit {
   ];
 
   @Input() menu?: WeeklyMenu;
+  template: any[];
+  connectedTo: string[] = new Array();
 
   constructor() {
-    if (!this.menu) {
-      this.menu = new WeeklyMenu();
-      console.log(this.menu);
+
+    this.template = new Array();
+    let i = 0;
+
+    for (const day in WeekDay) {
+      if (isNaN(Number(day))) {
+        this.template[i] = { id: day, list: new Array(12) };
+        this.connectedTo.push(day);
+        for (let j = 0; j < 12; j++) {
+          this.template[i].list[j] = day + j;
+        }
+        i++;
+      }
     }
   }
 

@@ -1,24 +1,15 @@
 <div class="menu">
-    <div *ngFor="let day of getWeekDayStringArray() ">{{day}}</div>
-    <div *ngFor="let breakfast of menu.breakfast | keyvalue">{{breakfast.key}}</div>
-    <div *ngFor="let lunch of menu.breakfast | keyvalue">{{lunch.key}}</div>
-    <div *ngFor="let dinner of menu.breakfast | keyvalue">{{dinner.key}}</div>
-</div>
-
-<div class="example-container">
-    <h2>To do</h2>
-
-    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
-        class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+  <div
+    cdkDropList
+    id="{{ dayList.id }}"
+    [cdkDropListData]="dayList.list"
+    [cdkDropListConnectedTo]="connectedTo"
+    (cdkDropListDropped)="drop($event)"
+    class="day-list"
+    *ngFor="let dayList of template"
+  >
+    <div *ngFor="let item of dayList.list" class="item-box" cdkDrag>
+      {{ item }}
     </div>
-</div>
-
-<div class="example-container">
-    <h2>Done</h2>
-
-    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
-        class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-    </div>
+  </div>
 </div>
