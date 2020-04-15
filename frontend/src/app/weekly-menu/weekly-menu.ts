@@ -2,17 +2,20 @@ import { Recipe } from '../recipe/recipe';
 import { WeekDay } from '@angular/common';
 
 export class WeeklyMenu {
-    breakfast: Map<string, Recipe[]> = new Map();
-    lunch: Map<string, Recipe[]> = new Map();
-    dinner: Map<string, Recipe[]> = new Map();
+    dinner: Recipe[][];
 
     constructor() {
-        for (const day in WeekDay) {
-            if (typeof WeekDay[day] !== 'number') {
-                this.breakfast.set(day, new Array(2));
-                this.lunch.set(day, new Array(5));
-                this.dinner.set(day, new Array(5));
+        this.dinner = new Array();
+
+        for (const day in WeeklyMenu.getWeekDayStringArray()) {
+            this.dinner[WeekDay[day]] = new Array();
+            for (let j = 0; j < 5; j++) {
+                this.dinner[WeekDay[day]].push(WeekDay[day] + j);
             }
         }
+    }
+
+    static getWeekDayStringArray(): string[] {
+        return Object.keys(WeekDay).filter(day => typeof WeekDay[day] === 'number');
     }
 }

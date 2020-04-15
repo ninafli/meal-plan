@@ -1,14 +1,7 @@
-<div class="menu">
-  <div
-    cdkDropList
-    id="{{ dayList.id }}"
-    [cdkDropListData]="dayList.list"
-    [cdkDropListConnectedTo]="connectedTo"
-    (cdkDropListDropped)="drop($event)"
-    class="day-list"
-    *ngFor="let dayList of template"
-  >
-    <div *ngFor="let item of dayList.list" class="item-box" cdkDrag>
+<div cdkDropListGroup class="menu">
+  <div cdkDropList [cdkDropListData]="menu.dinner[day]" (cdkDropListDropped)="drop($event)" class="day-list"
+    *ngFor="let day of getWeekDayStringArray()">
+    <div *ngFor="let item of menu.dinner[day]" class="item-box" cdkDrag>
       {{ item }}
     </div>
   </div>
