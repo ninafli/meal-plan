@@ -1,4 +1,4 @@
-import { FractionPipe } from './../../common/fraction.pipe';
+import { FractionPipe } from '../../common/fraction.pipe';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatAccordion, MatDialog } from '@angular/material';
 import { Recipe } from '../recipe';
@@ -11,11 +11,11 @@ import { ConfirmDialogModel, ConfirmDialogComponent } from 'src/app/common/confi
 import { RecipeEditorComponent } from '../recipe-editor/recipe-editor.component';
 
 @Component({
-  selector: 'app-view-recipe',
-  templateUrl: './view-recipe.component.html',
-  styleUrls: ['./view-recipe.component.css']
+  selector: 'app-recipe-details',
+  templateUrl: './recipe-details.component.html',
+  styleUrls: ['./recipe-details.component.css']
 })
-export class ViewRecipeComponent implements OnInit {
+export class RecipeDetailsComponent implements OnInit {
 
   recipe$: Observable<Recipe>;
 
@@ -25,10 +25,7 @@ export class ViewRecipeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('in view-recipe')
-    this.recipe$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.recipeService.getRecipe(params.get('id'))));
+    this.route.params.subscribe(params => this.recipe$ = this.recipeService.getRecipe(params.id));
   }
 
   print(ingredient: Ingredient): string {

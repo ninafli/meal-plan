@@ -15,9 +15,11 @@ import { RecipeMainComponent } from './recipe/recipe-main.component';
 import { RecipeTagComponent } from './recipe/recipe-tag/recipe-tag.component';
 import { RecipeSideMenuComponent } from './recipe/recipe-side-menu.component';
 import { RecipeCardComponent } from './recipe/view-recipe/recipe-card.component';
-import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
+import { RecipeDetailsComponent } from './recipe/view-recipe/recipe-details.component';
 import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
 import { WeeklyMenuComponent } from './weekly-menu/weekly-menu.component';
+import { WeeklyMenuSidebarComponent } from './weekly-menu/weekly-menu-sidebar/weekly-menu-sidebar.component';
+import { CommonComponent } from './common.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +32,12 @@ import { WeeklyMenuComponent } from './weekly-menu/weekly-menu.component';
     ImageUrlDialog,
     RecipeSideMenuComponent,
     RecipeCardComponent,
-    ViewRecipeComponent,
+    RecipeDetailsComponent,
     FractionPipe,
     ConfirmDialogComponent,
-    WeeklyMenuComponent
+    WeeklyMenuComponent,
+    WeeklyMenuSidebarComponent,
+    CommonComponent
   ],
   imports: [
     BrowserModule,

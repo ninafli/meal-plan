@@ -12,14 +12,13 @@ export class RecipeMainComponent implements OnInit {
 
   recipes: Recipe[];
   constructor(private recipeService: RecipeService, private activeRoute: ActivatedRoute) { }
-
   ngOnInit() {
     this.activeRoute.params.subscribe(queryParams => {
-      console.log('changed');
       this.queryParamChanged(queryParams);
     });
   }
   queryParamChanged(queryParams) {
     this.recipeService.find(queryParams.tag).subscribe(data => this.recipes = data);
   }
+
 }

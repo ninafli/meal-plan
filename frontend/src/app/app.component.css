@@ -10,18 +10,6 @@
   flex: 1 1 auto;
 }
 
-.main-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 100%;
-}
-
-.sidenav-container {
-  background-color: red;
-  width: 30%;
-}
-
 a {
   text-decoration: none;
   font-size: 110%;

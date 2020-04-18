@@ -14,6 +14,8 @@ export class RecipeSideMenuComponent implements OnInit {
   tagSummary: [];
 
   constructor(route: ActivatedRoute, public dialog: MatDialog, private recipeService: RecipeService) {
+    route.params.subscribe(params => console.log("side menu id parameter", params.id));
+
   }
 
   ngOnInit() {
