@@ -14,7 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeMainComponent } from './recipe/recipe-main.component';
 import { RecipeTagComponent } from './recipe/recipe-tag/recipe-tag.component';
 import { RecipeSideMenuComponent } from './recipe/recipe-side-menu.component';
-import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards.component';
 import { RecipeCardComponent } from './recipe/view-recipe/recipe-card.component';
 import { ViewRecipeComponent } from './recipe/view-recipe/view-recipe.component';
 import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
@@ -30,7 +29,6 @@ import { WeeklyMenuComponent } from './weekly-menu/weekly-menu.component';
     RecipeTagComponent,
     ImageUrlDialog,
     RecipeSideMenuComponent,
-    RecipeCardsComponent,
     RecipeCardComponent,
     ViewRecipeComponent,
     FractionPipe,

@@ -1,10 +1,19 @@
 <mat-toolbar color="primary">
-  <a mat-button class="companyName" routerLink="/">
+  <a mat-button class="title" routerLink="/">
     <span>{{title}}</span>
   </a>
-  <span class="example-spacer"></span>
+  <span class="spacer"></span>
   <a mat-button routerLink="/recipes">Recipes</a>
   <a mat-button routerLink="/weekly-menu">Weekly Menu</a>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+
+<mat-sidenav-container class="main-container">
+  <mat-sidenav mode="side" class="sidenav-container" opened>
+    <router-outlet name="sidemenu"></router-outlet>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

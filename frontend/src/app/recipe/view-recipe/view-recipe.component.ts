@@ -22,10 +22,10 @@ export class ViewRecipeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router,
     private recipeService: RecipeService, private fractionPipe: FractionPipe,
     public dialog: MatDialog) {
-
   }
 
   ngOnInit() {
+    console.log('in view-recipe')
     this.recipe$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
         this.recipeService.getRecipe(params.get('id'))));

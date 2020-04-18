@@ -1,14 +1,6 @@
-.recipe-main-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 100%;
-}
-
-.mat-sidenav {
-  padding: 5px;
-}
-
-.mat-sidenav-content {
-  padding: 5px;
+.all-recipes-container {
+  display: grid;
+  grid-gap: 5px;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
 }
