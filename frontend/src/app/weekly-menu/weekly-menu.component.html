@@ -1,18 +1,27 @@
-<div cdkDropListGroup class="menu">
-  <div cdkDropList [cdkDropListData]="menu.dinner[day]" (cdkDropListDropped)="drop($event)" class="day-list"
-    *ngFor="let day of getWeekDayStringArray()">
-    <div *ngFor="let item of menu.dinner[day]" class="item-box" cdkDrag>
-      {{ item }}
-    </div>
-  </div>
-</div>
+<mat-sidenav-container class='mat-typography' cdkDropListGroup>
+    <mat-sidenav mode="side" opened class='sidebar'>
+        <mat-form-field class="search-input" appearance="outline">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput placeholder=" Search for a recipe" [(ngModel)]='searchString' (keyup.enter)="search()">
+        </mat-form-field>
 
-<!-- <mat-sidenav-container >
-  <mat-sidenav mode="side" class="sidenav-container" opened>
-    <router-outlet name="sidemenu"></router-outlet>
-  </mat-sidenav>
+        <div [hidden]="!searchResultSummary">
+            <p>{{searchResultSummary}}</p>
+            <mat-list id="searchList" cdkDropList [cdkDropListData]="searchResult" (cdkDropListDropped)="drop($event)"
+                class=" search-list">
+                <mat-list-item *ngFor="let recipe of searchResult" class="item search" cdkDrag> {{recipe}}
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
-    <router-outlet> </router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
+    <mat-sidenav-content class='main'>
+        <div cdkDropList [cdkDropListData]="menu.dinner[day]" (cdkDropListDropped)="drop($event)"
+            *ngFor="let day of getWeekDayStringArray()">
+            <h2>{{ day }}</h2>
+            <div *ngFor="let item of menu.dinner[day]" class="item schedule" cdkDrag>
+                {{ item }}
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

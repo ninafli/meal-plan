@@ -1,9 +1,9 @@
-<div class="all-recipes-container">
-  <a
-    *ngFor="let recipe of recipes"
-    [routerLink]="['/recipes', recipe.id]"
-    [routerLinkActive]="['is-active']"
-  >
-    <app-recipe-card class="recipe-card" [(recipe)]="recipe"></app-recipe-card>
-  </a>
-</div>
+<mat-sidenav-container class="recipe-main-container">
+  <mat-sidenav mode="side" opened>
+    <router-outlet name="sidemenu"></router-outlet>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet> </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

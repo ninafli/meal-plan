@@ -10,15 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RecipeMainComponent implements OnInit {
 
-  recipes: Recipe[];
-  constructor(private recipeService: RecipeService, private activeRoute: ActivatedRoute) { }
+  constructor() { }
+
   ngOnInit() {
-    this.activeRoute.params.subscribe(queryParams => {
-      this.queryParamChanged(queryParams);
-    });
-  }
-  queryParamChanged(queryParams) {
-    this.recipeService.find(queryParams.tag).subscribe(data => this.recipes = data);
   }
 
 }

@@ -5,17 +5,15 @@ import { MatDialog } from '@angular/material';
 import { RecipeEditorComponent } from './recipe-editor/recipe-editor.component';
 
 @Component({
-  selector: 'app-recipe-side-menu',
-  templateUrl: './recipe-side-menu.component.html',
-  styleUrls: ['./recipe-side-menu.component.css']
+  selector: 'app-recipe-sidebar',
+  templateUrl: './recipe-sidebar.component.html',
+  styleUrls: ['./recipe-sidebar.component.css']
 })
-export class RecipeSideMenuComponent implements OnInit {
+export class RecipeSidebarComponent implements OnInit {
 
   tagSummary: [];
 
   constructor(route: ActivatedRoute, public dialog: MatDialog, private recipeService: RecipeService) {
-    route.params.subscribe(params => console.log("side menu id parameter", params.id));
-
   }
 
   ngOnInit() {

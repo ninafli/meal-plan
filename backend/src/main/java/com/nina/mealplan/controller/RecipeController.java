@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nina.mealplan.dm.Recipe;
@@ -68,5 +69,11 @@ public class RecipeController {
 	@GetMapping("/tag-summary")
 	public Map<String, Integer> getTagSummary() throws DatabaseException {
 		return recipeService.getTagSummary();
+	}
+
+	@GetMapping("/search")
+	@ResponseBody
+	public List<Recipe> search(@RequestParam String searchString) throws DatabaseException {
+		return recipeService.getRecipesWithTag("Vegetarian");
 	}
 }

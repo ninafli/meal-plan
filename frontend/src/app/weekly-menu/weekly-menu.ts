@@ -7,11 +7,12 @@ export class WeeklyMenu {
     constructor() {
         this.dinner = new Array();
 
+        // tslint:disable-next-line:forin
         for (const day in WeeklyMenu.getWeekDayStringArray()) {
             this.dinner[WeekDay[day]] = new Array();
-            for (let j = 0; j < 5; j++) {
-                this.dinner[WeekDay[day]].push(WeekDay[day] + j);
-            }
+            // for (let j = 0; j < 5; j++) {
+            //     this.dinner[WeekDay[day]].push(WeekDay[day] + j);
+            // }
         }
     }
 

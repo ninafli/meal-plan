@@ -1,28 +1,27 @@
-import { WeeklyMenuComponent } from './weekly-menu/weekly-menu.component';
-import { RecipeSideMenuComponent } from './recipe/recipe-side-menu.component';
+import { WeeklyMenuMainComponent } from './weekly-menu/weekly-menu.component';
+import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards.component';
+import { RecipeSidebarComponent } from './recipe/recipe-sidebar.component';
 import { RecipeMainComponent } from './recipe/recipe-main.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipeDetailsComponent } from './recipe/view-recipe/recipe-details.component';
-import { WeeklyMenuSidebarComponent } from './weekly-menu/weekly-menu-sidebar/weekly-menu-sidebar.component';
 import { AppComponent } from './app.component';
 import { CommonComponent } from './common.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   {
-    path: 'recipes', component: CommonComponent, children: [
-      { path: '', component: RecipeMainComponent },
-      { path: '', outlet: 'sidemenu', component: RecipeSideMenuComponent },
+    path: 'recipes', component: RecipeMainComponent, children: [
+      { path: '', component: RecipeCardsComponent },
+      { path: '', outlet: 'sidemenu', component: RecipeSidebarComponent },
       { path: ':id', component: RecipeDetailsComponent }]
   },
   {
-    path: 'weekly-menu', component: CommonComponent, children: [
-      {
-        path: '',
-        component: WeeklyMenuComponent
-      },
-      { path: '', outlet: 'sidemenu', component: WeeklyMenuSidebarComponent },
+    path: 'weekly-menu', component: WeeklyMenuMainComponent, children: [
+      // {
+      //   path: '',
+      //   component: WeeklyMenuComponent
+      // },
     ]
   }
 ];

@@ -1,0 +1,12 @@
+.sidenav-container {
+    width: 300px;
+}
+
+/*
+.add-button {
+   margin: 20px;
+} */
+
+.router-link-active {
+    background-color: red;
+}

@@ -13,13 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeMainComponent } from './recipe/recipe-main.component';
 import { RecipeTagComponent } from './recipe/recipe-tag/recipe-tag.component';
-import { RecipeSideMenuComponent } from './recipe/recipe-side-menu.component';
+import { RecipeSidebarComponent } from './recipe/recipe-sidebar.component';
 import { RecipeCardComponent } from './recipe/view-recipe/recipe-card.component';
 import { RecipeDetailsComponent } from './recipe/view-recipe/recipe-details.component';
 import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
-import { WeeklyMenuComponent } from './weekly-menu/weekly-menu.component';
-import { WeeklyMenuSidebarComponent } from './weekly-menu/weekly-menu-sidebar/weekly-menu-sidebar.component';
 import { CommonComponent } from './common.component';
+import { RecipeCardsComponent } from './recipe/view-recipe/recipe-cards.component';
+import { WeeklyMenuMainComponent } from './weekly-menu/weekly-menu.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +30,14 @@ import { CommonComponent } from './common.component';
     RecipeMainComponent,
     RecipeTagComponent,
     ImageUrlDialog,
-    RecipeSideMenuComponent,
+    RecipeSidebarComponent,
     RecipeCardComponent,
     RecipeDetailsComponent,
     FractionPipe,
     ConfirmDialogComponent,
-    WeeklyMenuComponent,
-    WeeklyMenuSidebarComponent,
-    CommonComponent
+    CommonComponent,
+    RecipeCardsComponent,
+    WeeklyMenuMainComponent
   ],
   imports: [
     BrowserModule,
