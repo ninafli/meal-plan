@@ -50,7 +50,9 @@ export class RecipeService {
   }
 
   search(searchString: string): Observable<Recipe[]> {
-    const params = new HttpParams().set('searchString', searchString);
-    return this.http.get<Recipe[]>(this.url + '/search', { params: params });
+    if (searchString){
+      const params = new HttpParams().set('searchString', searchString );
+      return this.http.get<Recipe[]>(this.url + '/search', { params: params });
+    }
   }
 }

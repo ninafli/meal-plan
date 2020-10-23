@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, EventEmitter, Output, ElementRef, ViewChild, OnChanges, AfterViewInit, Renderer } from '@angular/core';
-import { MatInput, MatFormField } from '@angular/material';
+import { Component, OnInit, Input, EventEmitter, Output, ElementRef, ViewChild, OnChanges, AfterViewInit, Renderer2 } from '@angular/core';
+import { MatFormField } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 import { Ingredient } from '../ingredient';
 
 @Component({
@@ -12,11 +13,11 @@ export class IngredientItemComponent implements OnInit {
   @Input() ingredient?: Ingredient;
   @Output() ingredientAdded = new EventEmitter<Ingredient>();
   @Output() ingredientDeleted = new EventEmitter<Ingredient>();
-  @ViewChild('amount', { static: false }) amount: ElementRef;
+  @ViewChild('amount') amount: ElementRef;
 
   isNew = false;
 
-  constructor(private renderer: Renderer) { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
     if (!this.ingredient) {

@@ -1,13 +1,24 @@
 <mat-card class="recipe-card">
-  <div class="image-container">
-    <img class="recipe-image" mat-card-image [src]="recipe.image" alt="Photo of recipe" />
-  </div>
-  <mat-card-header>
-    <mat-card-title>{{ recipe.name }}</mat-card-title>
-  </mat-card-header>
+  <a [routerLink]="['/recipes', recipe.id]">
+    <div class="image-container">
+      <img
+        class="recipe-image"
+        mat-card-image
+        [src]="recipe.image"
+        alt="Photo of recipe"
+      />
+    </div>
+    <mat-card-header>
+      <mat-card-title>{{ recipe.name }}</mat-card-title>
+    </mat-card-header>
+  </a>
   <mat-card-content>
-    <mat-chip-list>
-      <mat-chip class="mat-small" *ngFor="let tag of recipe.tags" [selectable]="false">
+    <mat-chip-list [selectable]="false">
+      <mat-chip
+        class="mat-small"
+        *ngFor="let tag of recipe.tags"
+        [selectable]="false"
+      >
         {{ tag }}
       </mat-chip>
     </mat-chip-list>

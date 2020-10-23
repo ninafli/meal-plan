@@ -5,7 +5,9 @@ import { IngredientItemComponent } from '../ingredient-item/ingredient-item.comp
 import { MethodComponent } from '../method/method.component';
 import { Recipe } from '../recipe';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { observable, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -15,8 +17,8 @@ import { Router } from '@angular/router';
 })
 export class RecipeEditorComponent implements OnInit {
 
-  @ViewChild('newIngredient', { static: false }) newIngredient: IngredientItemComponent;
-  @ViewChild('newDirection', { static: false }) newDirection: MethodComponent;
+  @ViewChild('newIngredient') newIngredient: IngredientItemComponent;
+  @ViewChild('newDirection') newDirection: MethodComponent;
 
   recipe: Recipe;
 

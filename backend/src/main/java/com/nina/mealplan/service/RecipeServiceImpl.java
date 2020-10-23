@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,9 @@ import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import com.nina.mealplan.dm.Recipe;
 import com.nina.mealplan.exception.DatabaseException;
 import com.nina.mealplan.exception.RecipeNotFound;
@@ -70,10 +73,10 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public Recipe find(String recipeId) throws DatabaseException {
+	public Recipe get(String recipeId) throws DatabaseException {
 		Recipe recipe = null;
 		try {
-			DocumentReference ref = findRecipe(recipeId);
+			DocumentReference ref = getRecipe(recipeId);
 			DocumentSnapshot snapshot = ref.get().get();
 			if (!snapshot.exists()) {
 				throw new RecipeNotFound(recipeId);
@@ -86,7 +89,7 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public List<Recipe> findAll() throws DatabaseException {
+	public List<Recipe> getAll() throws DatabaseException {
 		List<Recipe> recipes = new ArrayList<Recipe>();
 		try {
 			for (QueryDocumentSnapshot snapshot : getRecipeCollection().get().get().getDocuments()) {
@@ -101,7 +104,7 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	public void delete(String recipeId) throws DatabaseException {
 		try {
-			DocumentReference recipeRef = findRecipe(recipeId);
+			DocumentReference recipeRef = getRecipe(recipeId);
 			if (recipeRef.get().get().exists()) {
 				recipeRef.delete().get();
 			}
@@ -130,6 +133,26 @@ public class RecipeServiceImpl implements RecipeService {
 		return result;
 	}
 
+	@Override
+	public List<Recipe> search(String searchString) throws DatabaseException {
+		if (Strings.isBlank(searchString)) {
+			return this.getAll();
+		}
+
+		List<Recipe> result = new ArrayList<Recipe>();
+
+		try {
+			Query query = getRecipeCollection().whereArrayContains("ingredients.amount", "1");
+			ApiFuture<QuerySnapshot> querySnapshot = query.get();
+			for (DocumentSnapshot snapshot : querySnapshot.get().getDocuments()) {
+				result.add(snapshot.toObject(Recipe.class));
+			}
+		} catch (InterruptedException | ExecutionException e) {
+			throw new DatabaseException(e);
+		}
+		return result;
+	}
+
 	private List<QueryDocumentSnapshot> getForTag(String tag) throws DatabaseException {
 		List<QueryDocumentSnapshot> result = null;
 		try {
@@ -140,7 +163,7 @@ public class RecipeServiceImpl implements RecipeService {
 		return result;
 	}
 
-	private DocumentReference findRecipe(String recipeId)
+	private DocumentReference getRecipe(String recipeId)
 			throws RecipeNotFound, InterruptedException, ExecutionException {
 		return getRecipeCollection().document(recipeId);
 	}

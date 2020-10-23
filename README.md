@@ -7,6 +7,7 @@
 
 # FIXME 
 * figure out keyboard mapping for add recipe
+* performance issue loading recipe tags and count: db design 
 
 # Links
 * Firebase: https://console.firebase.google.com/u/0/project/meal-plan-1d553/database/firestore/data~2FRecipe

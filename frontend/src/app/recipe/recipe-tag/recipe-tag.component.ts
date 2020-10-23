@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatAutocomplete, MatChipInputEvent, MatAutocompleteSelectedEvent } from '@angular/material';
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { RecipeService } from '../recipe.service';
@@ -19,8 +20,8 @@ export class RecipeTagComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   @Input() tags: string[];
-  @ViewChild('tagInput', { static: false }) tagInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(private recipeService: RecipeService) {
     this.recipeService.getTags().subscribe(data => {

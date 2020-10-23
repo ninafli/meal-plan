@@ -12,8 +12,8 @@ export class MethodComponent implements OnInit {
   @Input() method?: string;
   @Output() methodToEmit = new EventEmitter<string>();
 
-  @ViewChild('details', { static: false }) details: ElementRef;
-  @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
+  @ViewChild('details') details: ElementRef;
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
   isNew = false;
 

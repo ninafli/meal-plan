@@ -25,6 +25,7 @@
     border-bottom: solid 1px #ccc;
     align-items: center;
     font-size: 14px;
+    height: 50px;
 }
 
 .heading {
@@ -42,11 +43,6 @@
 h2 {
     border: solid 1px #ccc;
     height: 40px;
-}
-
-.schedule-item {
-    /* border: solid 1px #ccc; */
-    margin: 10px 10px;
 }
 
 .cdk-drag-preview {

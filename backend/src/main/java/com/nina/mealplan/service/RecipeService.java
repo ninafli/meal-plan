@@ -15,13 +15,15 @@ public interface RecipeService {
 
 	Recipe save(Recipe recipe) throws DatabaseException;
 
-	List<Recipe> findAll() throws DatabaseException;
+	List<Recipe> getAll() throws DatabaseException;
 
-	Recipe find(String recipeId) throws DatabaseException;
+	Recipe get(String recipeId) throws DatabaseException;
 
 	void delete(String id) throws DatabaseException;
 
 	Map<String, Integer> getTagSummary() throws DatabaseException;
 
 	List<Recipe> getRecipesWithTag(String tag) throws DatabaseException;
+
+	List<Recipe> search(String searchString) throws DatabaseException;
 }

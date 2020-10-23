@@ -1,6 +1,7 @@
 import { FractionPipe } from '../../common/fraction.pipe';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatAccordion, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
 import { Recipe } from '../recipe';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';

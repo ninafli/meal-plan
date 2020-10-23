@@ -45,7 +45,7 @@ public class RecipeController {
 	@GetMapping
 	public List<Recipe> find(@RequestParam(required = false) String tag) throws DatabaseException {
 		if (tag == null) {
-			return recipeService.findAll();
+			return recipeService.getAll();
 		} else {
 			return recipeService.getRecipesWithTag(tag);
 		}
@@ -53,7 +53,7 @@ public class RecipeController {
 
 	@GetMapping("/{id}")
 	public Recipe getRecipe(@PathVariable String id) throws DatabaseException {
-		return getRecipeService().find(id);
+		return getRecipeService().get(id);
 	}
 
 	@DeleteMapping("/{id}")
@@ -74,6 +74,6 @@ public class RecipeController {
 	@GetMapping("/search")
 	@ResponseBody
 	public List<Recipe> search(@RequestParam String searchString) throws DatabaseException {
-		return recipeService.getRecipesWithTag("Vegetarian");
+		return recipeService.search(searchString);
 	}
 }

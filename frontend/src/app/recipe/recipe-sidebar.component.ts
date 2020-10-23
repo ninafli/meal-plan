@@ -1,7 +1,7 @@
 import { RecipeService } from './recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { RecipeEditorComponent } from './recipe-editor/recipe-editor.component';
 
 @Component({

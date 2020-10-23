@@ -13,9 +13,9 @@ export class WeeklyMenuMainComponent implements OnInit {
 
   @Input() menu?: WeeklyMenu;
   template: any[];
-  private searchString: string;
-  private searchResult: Recipe[];
-  private searchResultSummary: string;
+  public searchString: string;
+  public searchResult: Recipe[];
+  public searchResultSummary: string;
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
@@ -30,10 +30,18 @@ export class WeeklyMenuMainComponent implements OnInit {
   }
 
   search() {
-    this.recipeService.search(this.searchString).subscribe(data => {
-      this.searchResult = data;
-      this.searchResultSummary = `${this.searchResult.length} result${this.searchResult.length > 1 ? 's' : ''}:`;
-    });
+    if (this.searchString) {
+      this.recipeService.search(this.searchString).subscribe(data => {
+        this.searchResult = data;
+        this.searchResultSummary = `${this.searchResult.length} result${this.searchResult.length > 1 ? 's' : ''}:`;
+      });
+    }
+    else {
+      this.recipeService.find().subscribe(data => {
+        this.searchResult = data;
+        this.searchResultSummary = 'All recipes:';
+      })
+    }
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -50,8 +58,6 @@ export class WeeklyMenuMainComponent implements OnInit {
           event.container.data,
           event.previousIndex,
           event.currentIndex);
-
-        console.log(this.menu);
       }
     }
   }

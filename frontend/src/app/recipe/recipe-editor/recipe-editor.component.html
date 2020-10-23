@@ -10,7 +10,7 @@
       <mat-step>
         <form>
           <ng-template matStepLabel>Ingredients</ng-template>
-          <app-ingredient-item *ngFor="let ingredient of recipe.ingredients" ngDefaultControl [(ingredient)]="ingredient"
+          <app-ingredient-item *ngFor="let ingredient of recipe.ingredients" ngDefaultControl [ingredient]="ingredient"
             (ingredientDeleted)="deleteIngredient($event)">
           </app-ingredient-item>
           <app-ingredient-item (ingredientAdded)="addIngredient($event)" #newIngredient>
@@ -21,7 +21,7 @@
         <form>
           <ng-template matStepLabel>Directions</ng-template>
           <div class="step-container">
-            <app-method *ngFor="let method of recipe.method; index as i" ngDefaultControl [(method)]="method" [(index)]="i">
+            <app-method *ngFor="let method of recipe.method; index as i" ngDefaultControl [method]="method" [index]="i">
             </app-method>
             <app-method (methodToEmit)="addDirection($event)" #newDirection></app-method>
           </div>
