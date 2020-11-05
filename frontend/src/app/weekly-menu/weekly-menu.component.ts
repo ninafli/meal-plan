@@ -1,8 +1,9 @@
+import { RecipeService } from './../recipe/recipe.service';
+import { WeeklyMenuService } from './weekly-menu.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem, copyArrayItem } from '@angular/cdk/drag-drop';
 import { WeeklyMenu } from './weekly-menu';
 import { Recipe } from '../recipe/recipe';
-import { RecipeService } from '../recipe/recipe.service';
 
 @Component({
   selector: 'app-weekly-menu',
@@ -16,7 +17,7 @@ export class WeeklyMenuMainComponent implements OnInit {
   public searchString: string;
   public searchResult: Recipe[];
   public searchResultSummary: string;
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService, private weeklyMenuService: WeeklyMenuService) { }
 
   ngOnInit() {
     if (!this.menu) {
@@ -60,7 +61,11 @@ export class WeeklyMenuMainComponent implements OnInit {
           event.currentIndex);
       }
     }
+
+    this.updateMenu();
   }
 
-
+  updateMenu() {
+    this.weeklyMenuService.update(this.menu).subscribe(data => this.menu = data);
+  }
 }

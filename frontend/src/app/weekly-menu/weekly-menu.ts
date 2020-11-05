@@ -2,18 +2,16 @@ import { Recipe } from '../recipe/recipe';
 import { WeekDay } from '@angular/common';
 
 export class WeeklyMenu {
-    dinner: Recipe[][];
+    dinner = new Map();
 
     constructor() {
-        this.dinner = new Array();
-
         // tslint:disable-next-line:forin
-        for (const day in WeeklyMenu.getWeekDayStringArray()) {
-            this.dinner[WeekDay[day]] = new Array();
+        for (const day of WeeklyMenu.getWeekDayStringArray()) {
+            this.dinner.set(day, <Recipe[]>[]);
         }
     }
 
     static getWeekDayStringArray(): string[] {
-        return Object.keys(WeekDay).filter(day => typeof WeekDay[day] === 'number');
+        return Object.keys(WeekDay).map(key => WeekDay[key]).filter(value => typeof value === 'string');
     }
 }

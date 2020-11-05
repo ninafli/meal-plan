@@ -27,14 +27,13 @@ import com.nina.mealplan.exception.RecipeNotFound;
 import lombok.Getter;
 
 @Service
-public class RecipeServiceImpl implements RecipeService {
+public class WeeklyMenuService {
 
 	@Autowired
 	@Getter
 	private Firestore fireStore;
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public Set<String> getTags() throws DatabaseException {
 		Set<String> result = new HashSet<String>();
 
@@ -50,7 +49,6 @@ public class RecipeServiceImpl implements RecipeService {
 		return result;
 	}
 
-	@Override
 	public Recipe create(Recipe recipe) throws DatabaseException {
 		ApiFuture<DocumentReference> future = getRecipeCollection().add(recipe);
 
@@ -66,13 +64,11 @@ public class RecipeServiceImpl implements RecipeService {
 		return addedRecipe;
 	}
 
-	@Override
 	public Recipe save(Recipe recipe) throws DatabaseException {
 		delete(recipe.getId());
 		return create(recipe);
 	}
 
-	@Override
 	public Recipe get(String recipeId) throws DatabaseException {
 		Recipe recipe = null;
 		try {
@@ -88,7 +84,6 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipe;
 	}
 
-	@Override
 	public List<Recipe> getAll() throws DatabaseException {
 		List<Recipe> recipes = new ArrayList<Recipe>();
 		try {
@@ -101,7 +96,6 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipes;
 	}
 
-	@Override
 	public void delete(String recipeId) throws DatabaseException {
 		try {
 			DocumentReference recipeRef = getRecipe(recipeId);
@@ -113,7 +107,6 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 	}
 
-	@Override
 	public Map<String, Integer> getTagSummary() throws DatabaseException {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
 
@@ -123,7 +116,6 @@ public class RecipeServiceImpl implements RecipeService {
 		return result;
 	}
 
-	@Override
 	public List<Recipe> getRecipesWithTag(String tag) throws DatabaseException {
 		List<Recipe> result = new ArrayList<Recipe>();
 
@@ -133,7 +125,6 @@ public class RecipeServiceImpl implements RecipeService {
 		return result;
 	}
 
-	@Override
 	public List<Recipe> search(String searchString) throws DatabaseException {
 		if (Strings.isBlank(searchString)) {
 			return this.getAll();

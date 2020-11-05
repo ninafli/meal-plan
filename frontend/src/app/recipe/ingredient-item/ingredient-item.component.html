@@ -1,61 +1,35 @@
 <div class="ingredient-container">
   <div class="ingredient-item first">
     <mat-form-field [floatLabel]="'never'" class="input-amount">
-      <input
-        matInput
-        placeholder="1"
-        [(ngModel)]="ingredient.amount"
-        type="number"
-        name="amount"
-        #amount
-      />
+      <input matInput placeholder="1" [(ngModel)]="ingredient.amount" type="number" name="amount" #amount />
     </mat-form-field>
   </div>
 
   <div class="ingredient-item">
     <mat-form-field [floatLabel]="'never'" class="input-unit">
-      <input
-        matInput
-        placeholder="cup"
-        [(ngModel)]="ingredient.unit"
-        name="unit"
-      />
+      <input matInput placeholder="cup" [(ngModel)]="ingredient.unit" name="unit" />
     </mat-form-field>
   </div>
 
   <div class="ingredient-item">
     <mat-form-field [floatLabel]="'never'" class="input-method">
-      <input
-        matInput
-        placeholder="chopped"
-        [(ngModel)]="ingredient.prepMethod"
-        name="prepMethod"
-      />
+      <input matInput placeholder="chopped" [(ngModel)]="ingredient.prepMethod" name="prepMethod" />
     </mat-form-field>
   </div>
 
   <div class="ingredient-item">
     <mat-form-field [floatLabel]="'never'" class="input-name">
-      <input
-        matInput
-        placeholder="onions"
-        [(ngModel)]="ingredient.rawIngredient"
-        name="rawIngredient"
-        (keydown.tab)="addIngredient()"
-      />
+      <input matInput placeholder="onions" [(ngModel)]="ingredient.rawIngredient" name="rawIngredient"
+        (keydown.tab)="addIngredient()" />
     </mat-form-field>
   </div>
 
-  <div
-    mat-icon-button
-    class="ingredient-item delete-button"
-    (click)="deleteIngredient()"
-  >
-    <mat-icon>clear</mat-icon>
+  <div *ngIf="!isNew" mat-icon-button class="ingredient-item delete-button" (click)="deleteIngredient()">
+    <mat-icon>delete</mat-icon>
   </div>
 </div>
 <div *ngIf="isNew" class="ingredient-add">
   <button mat-stroked-button (click)="addIngredient()">
-    <i class="material-icons">add</i> Add another
+    <i class="material-icons">add</i> More ingredients
   </button>
 </div>
