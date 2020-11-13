@@ -13,7 +13,9 @@ export class WeeklyMenuService {
     this.url = 'http://localhost:8080/weeklyMenu';
   }
 
-
+  get(): Observable<WeeklyMenu> {
+    return this.http.get<WeeklyMenu>(this.url);
+  }
   update(menu: WeeklyMenu): Observable<WeeklyMenu> {
     return this.http.put<WeeklyMenu>(this.url, menu);
   }

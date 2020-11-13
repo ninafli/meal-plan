@@ -15,13 +15,11 @@
         </div>
     </mat-sidenav>
 
-    <mat-sidenav-content class='main'>
-        <div cdkDropList [cdkDropListData]="menu.dinner.get(day)" (cdkDropListDropped)="drop($event)"
-            *ngFor="let day of getWeekDayStringArray()">
+    <mat-sidenav-content class='main' *ngIf="menu">
+        <ul cdkDropList [cdkDropListData]="menu.dinner.get(day)" (cdkDropListDropped)="drop($event)"
+            *ngFor="let day of getWeekDays()">
             <h2>{{ day }}</h2>
-            <div *ngFor="let item of menu.dinner.get(day)" class="item schedule" cdkDrag>
-                {{ item.name }}
-            </div>
-        </div>
+  
+        </ul>
     </mat-sidenav-content>
 </mat-sidenav-container>
